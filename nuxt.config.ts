@@ -27,7 +27,7 @@ export default defineNuxtConfig({
         {
           type: 'image/x-icon',
           rel: 'shortcut icon',
-          href: '/assets/image/logo-basenuxt.png',
+          href: '/public/image/logo-basenuxt.png',
         },
       ],
     },
