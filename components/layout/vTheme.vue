@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button class="btn btn-ghost" onclick="modelTheme.showModal()">
-            <font-awesome-icon class="text-teal-400 text-2xl" :icon="['fas', 'brush']" />
+        <button class="btn btn-sm sm:btn-md btn-ghost" onclick="modelTheme.showModal()">
+            <font-awesome-icon class="text-teal-400 sm:text-2xl text-xl" :icon="['fas', 'brush']" />
         </button>
         <dialog id="modelTheme" class="modal">
             <form method="dialog" class="modal-box">
@@ -12,7 +12,7 @@
                         <label class="label cursor-pointer">
                             <span class="label-text">{{ i }}</span>
                             <input :data-set-theme="i" data-act-class="ACTIVECLASS" type="radio" name="radio-theme"
-                                class="radio checked:bg-green-400" :checked="theme == i" />
+                                class="radio checked:bg-teal-400" :checked="theme == i" />
                         </label>
                     </div>
                 </div>

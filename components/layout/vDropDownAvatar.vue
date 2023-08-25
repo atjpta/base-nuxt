@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div>
+        <div class="sm:h-12 h-8">
             <div class="dropdown dropdown-end dropdown-hover">
                 <label tabindex="0" class="cursor-pointer">
-                    <img class="h-12 w-12 rounded-full" :src="useAuth.user.avatar" alt="" />
+                    <img class="sm:h-12 sm:w-12 w-8 h-8 rounded-full" :src="useAuth.user.avatar" alt="" />
                 </label>
                 <ul tabindex="0" class="dropdown-content z-[1] menu glass lg:menu-horizontal rounded-box lg:mb-64 w-52">
                     <div class="flex justify-start items-center m-2 space-x-2">
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <li>
-                        <a class="w-full">
+                        <a @click="navigateTo(`/user/${useAuth.user._id}`)" class="w-full">
                             <font-awesome-icon class="text-teal-400 text-xl" :icon="['fas', 'address-card']" />
                             <div>
                                 {{ t("Profile") }}

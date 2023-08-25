@@ -2,7 +2,8 @@
     <div>
         <div class="mx-auto w-fit">
             <Form @submit="handleRegister" :validation-schema="FormSchema">
-                <div class="pt-10 pb-5 px-20 rounded-md bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 space-y-5">
+                <div
+                    class="pt-10 pb-5 sm:px-20 px-5 rounded-md bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 space-y-5">
                     <div class="mx-auto">
                         <div class="join">
                             <div class="btn join-item">
@@ -75,7 +76,7 @@
                             <ErrorMessage name="rePassword" class="error-feedback" />
                         </div>
                         <div class="flex justify-end">
-                            <div class="text-center cursor-pointer hover:scale-110 duration-300 italic">
+                            <div class="text-white text-center cursor-pointer hover:scale-110 duration-300 italic">
                                 <NuxtLink to="/auth/sign-in" class="">
                                     {{ t("Have account?") }}
                                 </NuxtLink>

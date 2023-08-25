@@ -1,7 +1,7 @@
 <template>
     <div>
         <div @click="navigateTo('/')">
-            <div class="scale-125 btn btn-ghost bg-transparent hover:bg-transparent font-bold indicator">
+            <div class="scale-100 sm:scale-125 btn btn-ghost bg-transparent hover:bg-transparent font-bold indicator">
                 <div
                     class="w-20 h-9 duration-500 ring-4 ring-green-300/30 -skew-x-12 -skew-y-6 rounded-tl-full rounded-br-full bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400">
                 </div>
@@ -11,7 +11,7 @@
                     </div>
                 </div>
 
-                <div class="indicator-item top-1/2 right-1/2 translate-x-1/2">
+                <div class="indicator-item top-[48%] right-1/2 translate-x-1/2">
                     <div class="text-3xl">
                         <font-awesome-icon class="text-red-500" :icon="['fas', 'compact-disc']" spin />
                     </div>

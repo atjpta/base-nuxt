@@ -33,5 +33,9 @@
     "Profile": "Trang cá nhân",
     "Setting": "Cài đặt",
     "Logout": "Đăng Xuất",
-    "Select theme": "Chọn chủ đề"
+    "Select theme": "Chọn chủ đề",
+    "Error 500: server not working!!.": "Lỗi 500: máy chủ không hoạt động!!.",
+    "You can come back another time!!.": "Bạn có thể trở lại vào lần khác!!.",
+    "Return home": "Trờ về trang chủ",
+    "Error 404: page has been deleted or not found!!.": "Lỗi 404: Trang đã bị xóa hoặc không tìm thấy"
 }
