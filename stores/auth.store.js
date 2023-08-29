@@ -27,6 +27,8 @@ export const authStore = defineStore("authStore", {
         },
         async loadAuthState() {
             this.user = (await JSON.parse(localStorage.getItem("user"))) || {};
+            baseService.setToken(this.user.accessToken)
+            baseService.setRefreshToken(this.user.refreshToken)
         },
 
         async logout() {

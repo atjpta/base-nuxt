@@ -10,7 +10,6 @@
 .router-link-active,
 .router-link-exact-active {
   color: rgb(255, 255, 255);
-  font-weight: 700;
   background-image: linear-gradient(to right, #68d391, #34d399, #22d3ee);
 }
 

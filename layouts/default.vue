@@ -1,13 +1,15 @@
 <template>
     <div>
-        <div>
+        <div class="bg-gradient-to-r from-green-400/5 via-cyan-400/5 to-blue-400/5 min-h-screen">
             <NotificationVManager />
             <div class="drawer">
                 <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content flex flex-col">
                     <!-- Navbar -->
                     <LayoutVHeader />
-                    <slot />
+                    <div class="container sm:mx-auto px-5 duration-500">
+                        <slot />
+                    </div>
                 </div>
                 <div class="drawer-side">
                     <label for="my-drawer-3" class="drawer-overlay"></label>

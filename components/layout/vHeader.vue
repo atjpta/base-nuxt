@@ -25,10 +25,10 @@
                     </div>
                     <div v-else>
                         <div class="hidden sm:flex space-x-2">
-                            <nuxt-link class="btn text-teal-400 btn-sm sm:btn-md" to="/auth/sign-in">
+                            <nuxt-link class="btn btn-sm sm:btn-md w-32" to="/auth/sign-in">
                                 {{ t("Login") }}
                             </nuxt-link>
-                            <nuxt-link class="btn text-teal-400 btn-sm sm:btn-md" to="/auth/sign-up">
+                            <nuxt-link class="btn btn-sm sm:btn-md w-32" to="/auth/sign-up">
                                 {{ t("Register") }}
                             </nuxt-link>
                         </div>
