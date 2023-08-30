@@ -1,9 +1,9 @@
 <template>
     <div>
-        <button @click="getTheme()" class="btn btn-sm sm:btn-md btn-ghost" onclick="modelTheme.showModal()">
-            <font-awesome-icon class="text-teal-400 sm:text-2xl text-xl" :icon="['fas', 'brush']" />
+        <button @click="getTheme()" class="btn btn-sm sm:btn-md" onclick="modelThemeSetting.showModal()">
+            {{ theme }}
         </button>
-        <dialog id="modelTheme" class="modal">
+        <dialog id="modelThemeSetting" class="modal">
             <form method="dialog" class="modal-box">
                 <h3 class="font-bold text-lg">{{ t("Select theme") }}</h3>
 
@@ -33,11 +33,12 @@
 import { themeChange } from "theme-change";
 const { t } = useI18n();
 
-const theme = ref();
+const theme = ref(localStorage.getItem("theme"));
 
 const getTheme = () => {
     theme.value = localStorage.getItem("theme");
 };
+
 const themes = [
     "light",
     "dark",

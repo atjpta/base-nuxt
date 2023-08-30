@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="sticky top-0 z-[1] glass ring-0">
         <div class="w-full navbar h-12 sm:h-16 min-h-min flex items-center">
             <div class="">
                 <!-- for must same default.vue in layout -->

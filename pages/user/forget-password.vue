@@ -41,10 +41,6 @@
                     </div>
                     <div class="mx-auto">
                         <div class="join">
-                            <div class="btn join-item">
-                                <font-awesome-icon class="text-teal-400 text-xl" :icon="['fas', 'user']" />
-                            </div>
-
                             <input type="number" v-model="code" :placeholder="t('code')" name="password"
                                 class="input sm:w-80 join-item placeholder:italic" />
                         </div>

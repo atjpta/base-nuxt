@@ -14,15 +14,15 @@ const route = useRoute();
 const { t } = useI18n();
 const tabs = [
     {
-        url: `/user/${route.params.id}/1`,
-        title: `1`,
+        url: `/user/${route.params.id}/home`,
+        title: t("Home"),
     },
     {
         url: `/user/${route.params.id}/change-password`,
         title: t(`Change password`),
     },
     {
-        url: `/user/${route.params.id}/3`,
+        url: `/user/${route.params.id}/setting`,
         title: t(`Setting`),
     },
 ];
@@ -30,6 +30,7 @@ const tabs = [
 const getApi = async () => {
     try {
         await useUser.findOne(route.params.id);
+        navigateTo(`${route.params.id}/home`);
     } catch (error) {
         navigateTo("/error/404");
     }

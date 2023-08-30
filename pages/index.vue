@@ -1,10 +1,12 @@
 <template>
     <div>
-        <div class="bg-red-500/50 text-center">this is a home</div>
-        <font-awesome-icon icon="fa-brands fa-twitter-square" />
-        <font-awesome-icon icon="fa-brands fa-github-square" />
-        <font-awesome-icon :icon="['fas', 'user']" bounce class="text-emerald-700" />
-        <div>a</div>
+        <div class="bg-red-500/50 text-center h-96">this is a home</div>
+        <div class="bg-blue-500/50 text-center h-96">this is a home</div>
+        <div class="bg-yellow-500/50 text-center h-96">this is a home</div>
+        <div class="bg-violet-500/50 text-center h-96">this is a home</div>
+        <div class="bg-red-500/50 text-center h-96">this is a home</div>
+        <div class="bg-yellow-500/50 text-center h-96">this is a home</div>
+        <div class="bg-blue-500/50 text-center h-96">this is a home</div>
     </div>
 </template>
 
