@@ -85,6 +85,7 @@ const createNewPassword = async (data) => {
         loading.value = true;
         await useUser.forgetPassword(data.newPassword);
         useNotification.show("success", t("Change success!"));
+        navigateTo("/auth/sign-in");
     } catch (error) {
         if (error.message == BaseHttpStatus.UNAUTHORIZED.code) {
             useNotification.show("error", t("Please try again later"));

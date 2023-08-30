@@ -36,7 +36,6 @@
                             <div class="text-center text-white cursor-pointer hover:scale-110 duration-300 italic">
                                 <NuxtLink to="/user/forget-password" class="">
                                     {{ t("Forgot password?") }}
-                                    duration
                                 </NuxtLink>
                             </div>
                             <div class="text-center text-white cursor-pointer hover:scale-110 duration-300 italic">

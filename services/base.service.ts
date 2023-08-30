@@ -36,6 +36,7 @@ class BaseService {
       console.log(res.timestamp);
       throw Error(res.status?.code.toString());
     }
+
     return res.data;
   }
 

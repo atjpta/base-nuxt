@@ -30,11 +30,12 @@
             <!--  step 2 -->
             <div v-show="indexStep == steps[1].index">
                 <div>
-                    <div class="flex justify-center mb-3 items-center space-x-3">
-                        <div>{{ t("Await") }}</div>
-
-                        <span class="countdown"> <span :style="`--value: ${timeOut}`"></span> </span>s
-                        <div :class="timeOut > 1 ? 'btn-disabled' : ''" @click="getCode()" class="btn btn-sm">
+                    <div class="flex justify-center mb-3 space-x-3">
+                        <div v-if="timeOut > 0" class="flex justify-center items-center space-x-3">
+                            <div>{{ t("Await") }}</div>
+                            <span class="countdown"> <span :style="`--value: ${timeOut}`"></span> </span>s
+                        </div>
+                        <div :class="timeOut > 1 ? 'btn-disabled' : ''" @click="getCodeAgain()" class="btn btn-sm">
                             {{ t("Get again code") }}
                         </div>
                     </div>
@@ -96,11 +97,12 @@ const next = async () => {
     switch (indexStep.value) {
         case steps[0].index:
             try {
-                if (!useUser.model?._id) {
+                if (!useUser.model?._id || useUser.model.username != username.value) {
                     if (!username.value) {
                         useNotification.show("error", t("Username cannot be empty."));
                         break;
                     }
+                    timeOut.value = 60;
                     await getCode();
                 }
                 if (indexStep.value < steps.length) {
@@ -118,13 +120,11 @@ const next = async () => {
 
         case steps[1].index:
             try {
-                if (!useUser.model?._id) {
-                    if (!code.value) {
-                        useNotification.show("error", t("code cannot be empty."));
-                        break;
-                    }
-                    await useUser.checkCode(code.value);
+                if (!code.value) {
+                    useNotification.show("error", t("code cannot be empty."));
+                    break;
                 }
+                await useUser.checkCode(code.value.toString());
                 if (indexStep.value < steps.length) {
                     indexStep.value++;
                 }
@@ -137,12 +137,6 @@ const next = async () => {
             } finally {
                 break;
             }
-
-        case steps[2].index:
-            if (!username.value) {
-                useNotification.show("error", t("Username cannot be empty."));
-            }
-            break;
     }
 };
 
@@ -161,6 +155,16 @@ const getCode = async () => {
         timeOut.value--;
     }, 1000);
 };
+
+const getCodeAgain = async () => {
+    timeOut.value = 60;
+    await getCode();
+};
+
+onUnmounted(() => {
+    useUser.model = {};
+    useUser.code = "";
+});
 </script>
 
 <style></style>
