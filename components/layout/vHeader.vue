@@ -55,12 +55,13 @@
 </template>
 
 <script setup>
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const useAuth = authStore();
 
 const loadAuth = async () => {
     await useAuth.loadAuthState();
+    locale.value = localStorage.getItem("language") || "vi";
 };
 
 onMounted(() => {

@@ -31,7 +31,6 @@
 
 <script setup>
 const { locale, t } = useI18n();
-locale.value = localStorage.getItem("language") || "vi";
 const listLanguage = new Map().set("en", "English").set("vi", "VietNamese");
 const setLanguage = (data) => {
     locale.value = data;
