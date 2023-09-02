@@ -37,5 +37,11 @@ export const authStore = defineStore("authStore", {
             localStorage.removeItem('user')
             navigateTo('/auth/sign-in')
         },
+
+        update(user) {
+            this.user.avatar = user.avatar
+            this.user.fullName = user.fullName
+            localStorage.setItem("user", JSON.stringify(this.user));
+        }
     },
 });

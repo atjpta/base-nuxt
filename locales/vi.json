@@ -65,5 +65,12 @@
     "Please try again later": "Hãy thử lại vào lần sau",
     "Home": "Tường nhà",
     "Select theme:": "Chọn chủ đề:",
-    "Select language:": "Chọn ngôn ngữ:"
+    "Select language:": "Chọn ngôn ngữ:",
+    "Select language": "Chọn ngôn ngữ",
+    "Edit profile": "Chỉnh thông tin",
+    "Name": "Tên",
+    "Avatar": "Ảnh đại diện",
+    "Save": "Lưu",
+    "Update success": "Cập nhật thành công",
+    "Can't update": "Không thể cập nhật"
 }

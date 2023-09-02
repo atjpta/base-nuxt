@@ -10,7 +10,7 @@
                     <div class="bg-gradient-to-r from-green-400/10 via-cyan-400/10 to-blue-400/10 w-full p-2 rounded-box">
                         <div class="flex justify-start items-center m-2 space-x-2">
                             <div class="btn btn-circle cursor-default">
-                                <img class="w-12 h-12 min-w-max rounded-full" :src="useAuth.user.avatar" alt="" />
+                                <img class="w-12 h-12 rounded-full bg-white/10" :src="useAuth.user.avatar" alt="" />
                             </div>
                             <div class="font-medium text-ellipsis overflow-hidden w-full">
                                 {{ useAuth.user.fullName }}

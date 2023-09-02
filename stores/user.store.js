@@ -17,7 +17,7 @@ export const userStore = defineStore("userStore", {
     actions: {
         async findOne(id) {
             const records = await baseService.get(`${this.urlBase}/${id}`)
-            this.model = records[0]
+            return records[0]
         },
         async changePassword(password, newPassword) {
             await baseService.put(`${this.urlBase}/password`, { password, newPassword })
@@ -26,6 +26,7 @@ export const userStore = defineStore("userStore", {
         async checkUsername(username) {
             const records = await baseService.get(`${this.urlBase}/check-username?username=${username}`)
             this.model = records[0]
+            return records[0]
         },
         async checkCode(code) {
             await baseService.get(`${this.urlBase}/check-code?code=${code}`)
@@ -38,6 +39,11 @@ export const userStore = defineStore("userStore", {
                 code: this.code,
                 newPassword: password
             })
+        },
+        async update(data) {
+            const records = await baseService.put(this.urlBase, data)
+            this.model = records[0]
+            return records[0]
         }
     },
 });

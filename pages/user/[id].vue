@@ -10,27 +10,44 @@
 
 <script setup>
 const useUser = userStore();
+const useAuth = authStore();
+
+const itMe = computed(() => {
+    return useUser.model._id == useAuth.user._id;
+});
+
 const route = useRoute();
 const { t } = useI18n();
-const tabs = [
-    {
-        url: `/user/${route.params.id}/home`,
-        title: "Home",
-    },
-    {
-        url: `/user/${route.params.id}/change-password`,
-        title: "Change password",
-    },
-    {
-        url: `/user/${route.params.id}/setting`,
-        title: "Setting",
-    },
-];
+const tabs = computed(() => {
+    return [
+        {
+            url: `/user/${route.params.id}/home`,
+            title: "Home",
+            isShow: true,
+        },
+        {
+            url: `/user/${route.params.id}/edit-profile`,
+            title: "Edit profile",
+            isShow: itMe.value,
+            props: useUser.model,
+        },
+        {
+            url: `/user/${route.params.id}/change-password`,
+            title: "Change password",
+            isShow: itMe.value,
+        },
+        {
+            url: `/user/${route.params.id}/setting`,
+            title: "Setting",
+            isShow: itMe.value,
+        },
+    ];
+});
 
 const getApi = async () => {
     try {
-        await useUser.findOne(route.params.id);
-        // navigateTo(`${route.params.id}/home`);
+        const data = await useUser.findOne(route.params.id);
+        useUser.model = data;
     } catch (error) {
         navigateTo("/error/404");
     }
