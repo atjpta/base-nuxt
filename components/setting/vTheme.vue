@@ -4,7 +4,7 @@
             {{ theme }}
         </button>
         <dialog id="modelThemeSetting" class="modal">
-            <form method="dialog" class="modal-box">
+            <form method="dialog" class="modal-box bg-gradient-to-r from-green-400/10 via-cyan-400/10 to-blue-400/10">
                 <h3 class="font-bold text-lg">{{ t("Select theme") }}</h3>
 
                 <div class="sm:columns-3 columns-2">

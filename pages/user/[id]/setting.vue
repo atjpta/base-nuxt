@@ -2,9 +2,15 @@
     <div class="space-y-10">
         <div class="flex items-center">
             <div class="w-40">
-                {{ t("Select theme") }}
+                {{ t("Select theme:") }}
             </div>
             <SettingVTheme />
+        </div>
+        <div class="flex items-center">
+            <div class="w-40">
+                {{ t("Select language:") }}
+            </div>
+            <SettingVLanguage />
         </div>
     </div>
 </template>

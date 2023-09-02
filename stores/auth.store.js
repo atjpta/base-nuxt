@@ -23,7 +23,6 @@ export const authStore = defineStore("authStore", {
 
         async Register(user) {
             const res = await baseService.post(`${this.urlBase}/register`, user)
-            this.user = res[0]
         },
         async loadAuthState() {
             this.user = (await JSON.parse(localStorage.getItem("user"))) || {};

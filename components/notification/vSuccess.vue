@@ -1,13 +1,13 @@
 <template>
     <div class="alert shadow-lg glass">
-        <font-awesome-icon class="text-success" :icon="['fas', 'circle-check']" />
+        <font-awesome-icon class="text-teal-400" :icon="['fas', 'circle-check']" />
         <div>
             <h3 class="font-bold">Success!</h3>
             <div class="text-xs">
                 {{ notification?.message || "it word ^^!!" }}
             </div>
         </div>
-        <div @click="close()" class="radial-progress text-success cursor-pointer" :style="time" style="--size: 50px">
+        <div @click="close()" class="radial-progress text-teal-400 cursor-pointer" :style="time" style="--size: 50px">
             See
         </div>
     </div>

@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <li>
-                            <a @click="navigateTo(`/user/${useAuth.user._id}`)" class="w-full">
+                            <a @click="navigateTo(`/user/${useAuth.user._id}/home`)" class="w-full">
                                 <font-awesome-icon class="text-teal-400 text-xl" :icon="['fas', 'address-card']" />
                                 <div>
                                     {{ t("Profile") }}
@@ -25,7 +25,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="">
+                            <a @click="navigateTo(`/user/${useAuth.user._id}/setting`)" class="">
                                 <font-awesome-icon class="text-teal-400 text-xl" :icon="['fas', 'gear']" />
                                 <div>
                                     {{ t("Setting") }}
