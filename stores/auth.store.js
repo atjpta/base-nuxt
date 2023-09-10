@@ -15,10 +15,19 @@ export const authStore = defineStore("authStore", {
     actions: {
         async login(user) {
             const res = await baseService.post(`${this.urlBase}/login`, user)
-            this.user = res[0]
+
+            if (res[0].role == myConstant.LIST_ROLES.Admin || res[0].role == myConstant.LIST_ROLES.Root) {
+                const useAdmin = adminStore()
+                useAdmin.admin = res[0];
+                localStorage.setItem("admin", JSON.stringify(res[0]));
+            }
+
+            this.user = res[0];
+            localStorage.setItem("user", JSON.stringify(res[0]));
+
             baseService.setToken(this.user.accessToken)
             baseService.setRefreshToken(this.user.refreshToken)
-            localStorage.setItem("user", JSON.stringify(this.user));
+
         },
 
         async Register(user) {

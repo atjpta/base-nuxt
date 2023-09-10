@@ -7,7 +7,10 @@
 </template>
 
 <style>
-.router-link-active,
+.router-link-active {
+  color: rgb(0, 0, 0);
+}
+
 .router-link-exact-active {
   color: rgb(255, 255, 255);
   background-image: linear-gradient(to right, #68d391, #34d399, #22d3ee);

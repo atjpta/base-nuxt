@@ -72,5 +72,9 @@
     "Avatar": "Ảnh đại diện",
     "Save": "Lưu",
     "Update success": "Cập nhật thành công",
-    "Can't update": "Không thể cập nhật"
+    "Can't update": "Không thể cập nhật",
+    "Admin": "Quản trị",
+    "admin": "quản trị",
+    "overview": "tổng quan",
+    "user": "người dùng"
 }

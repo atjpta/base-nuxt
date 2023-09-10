@@ -1,14 +1,19 @@
 <template>
-    <div class="sticky top-0 z-[1] glass ring-0">
-        <div class="w-full navbar h-12 sm:h-16 min-h-min flex items-center">
-            <div class="">
+    <div class="sticky top-0 z-[1] bg-base-100/50 blur-none ring-0">
+        <div class="w-full navbar h-12 sm:h-16 min-h-min  items-center">
+            <div class="lg:hidden">
                 <!-- for must same default.vue in layout -->
                 <label for="my-drawer-3" class="btn btn-sm sm:btn-md btn-ghost">
                     <font-awesome-icon :icon="['fas', 'bars']" />
                 </label>
             </div>
-            <div @click="navigateTo('/')" class="flex-1 sm:px-2 sm:mx-2">
-                <OtherVLogo />
+            <div class="flex-1 sm:px-2 sm:mx-2 ">
+                <div @click="navigateTo('/admin/manager/overview')" class="lg:hidden">
+                    <OtherVLogo />
+                </div>
+            </div>
+            <div>
+                wegrhgou
             </div>
             <div class="">
                 <ul class="sm:space-x-2 space-x-0.5 flex">
@@ -17,7 +22,7 @@
                         <LayoutVTheme />
                     </div>
 
-                    <div v-if="useAuth.user._id" class="flex items-center sm:space-x-4 space-x-1">
+                    <div v-if="useAdmin.admin._id" class="flex items-center sm:space-x-4 space-x-1">
                         <div class="btn btn-ghost sm:btn-md btn-sm">
                             <font-awesome-icon class="text-teal-400 text-2xl" :icon="['fas', 'bell']" />
                         </div>
@@ -25,11 +30,8 @@
                     </div>
                     <div v-else>
                         <div class="hidden sm:flex space-x-2">
-                            <nuxt-link class="btn btn-sm sm:btn-md w-32" to="/auth/sign-in">
+                            <nuxt-link class="btn btn-sm sm:btn-md w-32" to="/admin">
                                 {{ t("Login") }}
-                            </nuxt-link>
-                            <nuxt-link class="btn btn-sm sm:btn-md w-32" to="/auth/sign-up">
-                                {{ t("Register") }}
                             </nuxt-link>
                         </div>
 
@@ -40,12 +42,7 @@
                                     <font-awesome-icon :icon="['fas', 'right-to-bracket']" />
                                 </div>
                             </nuxt-link>
-                            <nuxt-link class="btn btn-ghost text-teal-400 btn-sm sm:btn-md sm:text-2xl text-xl"
-                                to="/auth/sign-up">
-                                <div class="sm:hidden">
-                                    <font-awesome-icon :icon="['fas', 'user-pen']" />
-                                </div>
-                            </nuxt-link>
+
                         </div>
                     </div>
                 </ul>
@@ -57,9 +54,7 @@
 <script setup>
 const { t, locale } = useI18n();
 
-const useAuth = authStore();
-
-
+const useAdmin = adminStore()
 </script>
 
 <style></style>

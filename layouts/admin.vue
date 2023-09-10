@@ -2,20 +2,22 @@
     <div>
         <div class="bg-gradient-to-r from-green-400/5 via-cyan-400/5 to-blue-400/5 min-h-screen">
             <NotificationVManager />
-            <div class="drawer">
-                <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+            <div class="drawer lg:drawer-open">
+                <!-- <div class="drawer drawer-open"> -->
+                <input ref="btnTurnOff" id="my-drawer-3" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content flex flex-col">
                     <!-- Navbar -->
-                    <LayoutVHeader class="" />
+                    <LayoutVHeaderAdmin class="" />
                     <div class="container sm:mx-auto px-5 duration-500">
                         <slot />
                     </div>
                 </div>
                 <div class="drawer-side z-40">
                     <label for="my-drawer-3" class="drawer-overlay"></label>
-                    <ul class="menu p-4 w-72 h-full bg-base-100">
+                    <ul
+                        class="menu p-4 w-72 h-full bg-base-100 bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20">
                         <!-- Sidebar content here -->
-                        <LayoutVSidebar />
+                        <LayoutVSidebarAdmin :turnOffDrawer="turnOffDrawer" />
                     </ul>
                 </div>
             </div>
@@ -25,19 +27,25 @@
 
 <script setup>
 const { t, locale } = useI18n();
-
-const useAuth = authStore();
+const useAdmin = adminStore();
 
 const loadAuth = async () => {
-    await useAuth.loadAuthState();
+    await useAdmin.loadAuthState();
     locale.value = localStorage.getItem("language") || "vi";
-    console.log('load loadAuth user');
-
+    console.log('load loadAuth admin');
 };
+
+const btnTurnOff = ref()
+
+const turnOffDrawer = () => {
+    btnTurnOff.value.click()
+
+}
 
 onMounted(() => {
     loadAuth();
 });
+
 </script>
 
 <style></style>

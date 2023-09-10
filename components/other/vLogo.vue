@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @click="navigateTo('/')">
+        <div>
             <div class="scale-100 sm:scale-125 btn btn-ghost bg-transparent hover:bg-transparent font-bold indicator">
                 <div
                     class="w-20 h-9 duration-500 ring-4 ring-green-300/30 -skew-x-12 -skew-y-6 rounded-tl-full rounded-br-full bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400">
