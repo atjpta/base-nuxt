@@ -27,8 +27,8 @@ export default defineNuxtConfig({
         {
           type: 'image/x-icon',
           rel: 'shortcut icon',
-          href: 'https://base-nest.vercel.app/api/v1/images/logo-basenuxt.png',
-          // href: 'http://[::1]:3600/api/v1/file/eye Ai.jpg',
+          // href: 'https://base-nest.vercel.app/api/v1/images/logo-basenuxt.png',
+          href: 'http://[::1]:3600/api/v1/file/eye Ai.jpg',
         },
       ],
     },

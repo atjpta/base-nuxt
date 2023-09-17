@@ -3,7 +3,7 @@
         <div class="text-sm breadcrumbs">
             <ul>
                 <li @click="navigateTo('/admin/manager/overview')"><a>{{ t('home') }}</a></li>
-                <li v-for="(i) in listUrl" :key="i"><a class="link-hover link">{{ i
+                <li v-for="(i) in listUrl" :key="i"><a class="link-hover link">{{ t(i)
                 }}</a></li>
             </ul>
         </div>
@@ -33,6 +33,7 @@ useHead({
 });
 definePageMeta({
     layout: "admin",
+    middleware: "admin",
 });
 </script>
 

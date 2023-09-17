@@ -23,6 +23,6 @@ useHead({
 
 definePageMeta({
     layout: "admin",
-    middleware: "admin",
+    middleware: "login-admin",
 });
 </script>

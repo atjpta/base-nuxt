@@ -19,6 +19,8 @@ class BaseService {
   private static refreshToken: string = '';
 
   private filter(res: IBaseResponseHttp) {
+    console.log(res.status);
+
     if (res.status?.code == BaseHttpStatus.SERVER_ERROR.code) {
       navigateTo('/error/500');
     }

@@ -4,4 +4,9 @@ export class myConstant {
     Admin: 'admin',
     User: 'user',
   };
+
+  static PAGINATION = {
+    minPage: 1,
+    minLimit: 4,
+  };
 }

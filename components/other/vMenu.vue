@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="" :class="props.index == 0 ? 'menu rounded-lg max-w-xs w-full' : 'my-2'">
-            <li class="" v-for="(i, index) in props.menu" :key="index">
+            <li class="" v-for="(i) in props.menu" :key="i">
                 <details v-if="i.list.length > 0" :open="countRoute > i.level && isInRoute(i.level, t(i.title))">
                     <summary class=""
                         :class="route.path.includes(i.url) ? 'bg-gradient-to-r from-green-400/50 via-cyan-400/50 to-blue-400/50' : ''">
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    menu: IMenu[];
+    menu: any[]; // is IMenu
     index?: number;
     turnOffDrawer: Function
 

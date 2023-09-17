@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <OtherVMenu :turnOffDrawer="props.turnOffDrawer" index="0" :menu="list" />
+        <OtherVMenu :turnOffDrawer="props.turnOffDrawer" :index="0" :menu="list" />
 
     </div>
 </template>

@@ -1,0 +1,120 @@
+<template>
+    <tr>
+        <td>{{ data.fullName }}</td>
+
+        <td>
+            <div class="flex items-center space-x-3">
+                <div class="avatar">
+                    <div class="mask mask-squircle w-12 h-12">
+                        <img :src="data.avatar" :alt="data.avatar" />
+                    </div>
+                </div>
+                <div>
+                    <div class="font-bold">{{ data.username }}</div>
+                    <div class="text-sm opacity-50">{{ data.email }}</div>
+                </div>
+            </div>
+        </td>
+
+        <td>{{ data.role.name }}</td>
+
+        <th>
+            <div class="flex lg:flex-row flex-col">
+                <nuxtLink :to="`/user/${data._id}/home`"
+                    class="btn flex w-fit btn-ghost btn-xs text-primary tooltip tooltip-left" :data-tip="t('View')">
+                    <font-awesome-icon :icon="['fas', 'eye']" />
+                    <div class="lg:flex hidden">
+                        {{ t('View') }}
+                    </div>
+                </nuxtLink>
+
+                <button @click="openModal" class="btn flex w-fit btn-ghost btn-xs text-warning tooltip tooltip-left"
+                    :data-tip="t('Edit')">
+                    <font-awesome-icon :icon="['fas', 'pen-to-square']" />
+                    <div class="lg:flex hidden">
+                        {{ t('Edit') }}
+                    </div>
+                </button>
+
+                <button @click="deleteOne" class="btn flex w-fit btn-ghost btn-xs text-error tooltip tooltip-left"
+                    :data-tip="t('Delete')">
+                    <font-awesome-icon :icon="['fas', 'trash-can']" />
+                    <div class="lg:flex hidden">
+                        {{ t('Delete') }}
+                    </div>
+                </button>
+            </div>
+        </th>
+
+    </tr>
+
+    <dialog ref="modal" class="modal">
+        <form method="dialog" class="modal-box">
+            <h3 class="font-bold text-lg">{{ t("Edit role") }}</h3>
+
+            <div class="">
+                <div class="form-control">
+                    <div v-for="(i, index) in useRole.list" :key="i._id">
+                        <label class="label cursor-pointer">
+                            <span class="label-text">{{ i.name }}</span>
+                            <input @click="selectRole = i._id" type="radio" name="radio-role"
+                                class="radio checked:bg-teal-400" :checked="i.name == data.role.name" />
+                        </label>
+                        <div v-if="index < useRole.list.length - 1" class="divider my-0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            <div class="modal-action">
+                <button :class="isLoading ? 'loading' : ''" @click="edit" class="btn btn-primary">{{ t('Save') }}</button>
+                <button class="btn btn-ghost text-error">{{ t('Cancel') }}</button>
+            </div>
+        </form>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+</template>
+
+<script setup>
+const props = defineProps({
+    data: Object,
+})
+const useRole = roleStore()
+const useNotification = notificationStore()
+const modal = ref()
+const useUser = userStore()
+const selectRole = ref()
+const emit = defineEmits(['refreshData'])
+const isLoading = ref(false)
+const { t } = useI18n()
+
+const edit = async () => {
+    try {
+        isLoading.value = true
+        await useUser.updateRole(props.data._id, { role: selectRole.value })
+        emit('refreshData')
+        useNotification.show('success', t('Update success!!'))
+    } catch (error) {
+        if (error.message == BaseHttpStatus.FORBIDDEN.code) {
+            useNotification.show('error', t(`You need higher permissions to update!!`))
+        }
+    }
+    finally {
+        isLoading.value = false
+    }
+}
+
+const deleteOne = () => {
+    emit('refreshData')
+}
+
+const openModal = () => {
+    selectRole.value = props.data.role._id
+    modal.value.showModal();
+}
+</script>
+
+<style></style>

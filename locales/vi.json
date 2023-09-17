@@ -76,5 +76,19 @@
     "Admin": "Quản trị",
     "admin": "quản trị",
     "overview": "tổng quan",
-    "user": "người dùng"
+    "user": "người dùng",
+    "home": "trang chủ",
+    "Role": "Vai trò",
+    "Action": "Hành động",
+    "Email": "Email",
+    "Add": "Thêm",
+    "Edit": "Sửa",
+    "View": "Xem",
+    "Delete": "Xóa",
+    "Page": "Trang",
+    "Select page": "Chọn trang",
+    "Cancel": "Hủy",
+    "Edit role": "Sửa vai trò",
+    "Update success!!": "Thay đổi thành công!!",
+    "You need higher permissions to update!!": "Bạn cần quyền hạn cao hơn để thay đổi!!"
 }

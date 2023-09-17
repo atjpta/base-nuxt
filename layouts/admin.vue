@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="bg-gradient-to-r from-green-400/5 via-cyan-400/5 to-blue-400/5 min-h-screen">
+    <div class=" overflow-auto h-screen">
+        <div class="bg-gradient-to-r from-green-400/5 via-cyan-400/5 to-blue-400/5 min-h-screen ">
             <NotificationVManager />
             <div class="drawer lg:drawer-open">
                 <!-- <div class="drawer drawer-open"> -->

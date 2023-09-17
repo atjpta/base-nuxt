@@ -44,6 +44,15 @@ export const userStore = defineStore("userStore", {
             const records = await baseService.put(this.urlBase, data)
             this.model = records[0]
             return records[0]
-        }
+        },
+        async findAll(page, limit) {
+            const records = await baseService.get(`${this.urlBase}?page=${page}&limit=${limit}`)
+            return records[0]
+        },
+
+        async updateRole(id, data) {
+            const records = await baseService.put(`${this.urlBase}/${id}`, data)
+            return records[0]
+        },
     },
 });

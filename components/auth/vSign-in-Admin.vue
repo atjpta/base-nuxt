@@ -77,7 +77,7 @@ const handleLogin = async (user) => {
         loading.value = true;
         await useAuth.login(user);
         useNotification.show("success", t("Login success!!."));
-        navigateTo("/admin/test");
+        navigateTo("/admin/manager/overview");
     } catch (error) {
         if (error.message == "404") {
             useNotification.show("error", t("Wrong username."));
