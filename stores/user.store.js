@@ -54,5 +54,10 @@ export const userStore = defineStore("userStore", {
             const records = await baseService.put(`${this.urlBase}/${id}`, data)
             return records[0]
         },
+
+        async deleteOne(id) {
+            const records = await baseService.delete(`${this.urlBase}/${id}`)
+            return records[0]
+        },
     },
 });

@@ -19,8 +19,6 @@ class BaseService {
   private static refreshToken: string = '';
 
   private filter(res: IBaseResponseHttp) {
-    console.log(res.status);
-
     if (res.status?.code == BaseHttpStatus.SERVER_ERROR.code) {
       navigateTo('/error/500');
     }
@@ -125,6 +123,22 @@ class BaseService {
     }
 
     return this.filter(data.value as IBaseResponseHttp);
+  }
+
+  static async testAwait() {
+    const { data, error, status } = await useFetch<IBaseResponseHttp>(
+      BaseService.baseUrl + `databases/test-await`,
+      {
+        method: 'get',
+      },
+    );
+
+    if (error.value || status.value == 'error') {
+      console.log('--- error get ---');
+      console.log(error.value?.toString());
+    }
+
+    return;
   }
 }
 

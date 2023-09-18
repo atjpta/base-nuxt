@@ -4,6 +4,7 @@
             <table class="table table-zebra">
                 <thead>
                     <tr>
+                        <th></th>
                         <th v-for="(title, index) in listTitle" :key="index">
                             <div>{{ t(title) }}</div>
                         </th>

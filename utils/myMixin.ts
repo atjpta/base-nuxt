@@ -35,6 +35,10 @@ class myMixin {
 
     return null;
   };
+
+  public static testAwait = async (time = 2000) => {
+    return await new Promise((resolve) => setTimeout(resolve, time));
+  };
 }
 
 export default myMixin;

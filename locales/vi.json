@@ -90,5 +90,14 @@
     "Cancel": "Hủy",
     "Edit role": "Sửa vai trò",
     "Update success!!": "Thay đổi thành công!!",
-    "You need higher permissions to update!!": "Bạn cần quyền hạn cao hơn để thay đổi!!"
+    "You need higher permissions to update!!": "Bạn cần quyền hạn cao hơn để thay đổi!!",
+    "Alert!!": "Thông báo!!",
+    "Are you sure you want to delete?": "Bạn chắc chắn muốn xóa?",
+    "Content alert!": "Nội dung thông báo",
+    "Ok": "Ok",
+    "Delete success!!": "Xóa thành công!!",
+    "Can't update!!": "Không thể thay đổi!!",
+    "Can't delete!!": "Không thể xóa!!",
+    "Can't delete ROOT!!": "Không thể xóa ROOT!!",
+    "You need higher permissions to delete!!": "Bạn cần quyền hạn cao hơn để xóa!!"
 }
