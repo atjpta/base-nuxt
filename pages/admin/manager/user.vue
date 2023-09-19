@@ -6,8 +6,9 @@
                 {{ t('Add') }}
             </div>
         </div>
-        <OtherVTable :refresh-cb="refreshData" :get-more-cb="getMore" :total="total" :list-title="listTitle"
-            :list-data="listData" :cpn="AdminManagerVRecordUser" />
+        <SkeletonVTable v-if="isLoading" />
+        <OtherVTable v-show="!isLoading" :refresh-cb="refreshData" :get-more-cb="getMore" :total="total"
+            :list-title="listTitle" :list-data="listData" :cpn="AdminManagerVRecordUser" />
     </div>
 </template>
 
@@ -24,13 +25,23 @@ const listData = ref([])
 const total = ref(0)
 const indexPage = ref(1)
 const indexPageLimit = ref(1)
-
+const isLoading = ref(false)
 const getMore = async (page, limit) => {
-    indexPage.value = page;
-    indexPageLimit.value = limit
-    const result = await useUser.findAll(page, limit);
-    listData.value = result?.list;
-    total.value = result?.total;
+    try {
+        isLoading.value = true
+        // await myMixin.testAwait()
+        indexPage.value = page;
+        indexPageLimit.value = limit
+        const result = await useUser.findAll(page, limit);
+        listData.value = result?.list;
+        total.value = result?.total;
+    } catch (error) {
+        console.log(error);
+    }
+    finally {
+        isLoading.value = false
+
+    }
 }
 
 const refreshData = async () => {

@@ -1,19 +1,15 @@
 <template>
     <div>
         <div class="toast toast-center ">
-
             <div class="join">
-                <button :class="isLoading1 ? 'loading' : ''" @click="pre" :disabled="index == 1"
+                <button :class="isLoading1 ? 'loading' : ''" @click="pre" :disabled="indexPage == 1"
                     class="join-item btn ">«</button>
                 <button :disabled="isLoading2" class="join-item btn" onclick="modelPagination.showModal()">
-                    {{ t('Page') }} {{ index }}
+                    {{ t('Page') }} {{ indexPage }}
                 </button>
-                <button :class="isLoading3 ? 'loading' : ''" :disabled="index == maxPage" @click="next"
+                <button :class="isLoading3 ? 'loading' : ''" :disabled="indexPage == maxPage" @click="next"
                     class="join-item btn">»</button>
             </div>
-
-
-
         </div>
 
         <dialog id="modelPagination" class="modal ">
@@ -22,7 +18,7 @@
 
                 <div class="sm:columns-3 columns-2">
                     <div v-for="i in maxPage" :key="i">
-                        <div @click="goTo(i)" :class="i == index ? 'router-link-exact-active' : ''"
+                        <div @click="goTo(i)" :class="i == indexPage ? 'router-link-exact-active' : ''"
                             class="btn  btn-ghost my-1 ">
                             {{ t('Page') }} {{ i }}
                         </div>
@@ -46,7 +42,7 @@ const props = defineProps({
 })
 
 const maxPage = computed(() => {
-    return Math.floor(props.total / myConstant.PAGINATION.minLimit) + 1
+    return Math.ceil(props.total / myConstant.PAGINATION.minLimit)
 })
 
 const isLoading1 = ref(false)
@@ -55,15 +51,15 @@ const isLoading3 = ref(false)
 
 const close = ref()
 
-const index = ref(1)
+const indexPage = ref(1)
 
 const emit = defineEmits(['getMore'])
 
 const goTo = (i) => {
     try {
         isLoading2.value = true
-        index.value = i
-        emit('getMore', index.value, myConstant.PAGINATION.minLimit);
+        indexPage.value = i
+        emit('getMore', indexPage.value, myConstant.PAGINATION.minLimit);
         close.value.click()
     } catch (error) {
         console.log(error);
@@ -76,8 +72,8 @@ const goTo = (i) => {
 const next = () => {
     try {
         isLoading3.value = true
-        index.value++
-        emit('getMore', index.value, myConstant.PAGINATION.minLimit);
+        indexPage.value += 1
+        emit('getMore', indexPage.value, myConstant.PAGINATION.minLimit);
     } catch (error) {
         console.log(error);
     }
@@ -90,8 +86,8 @@ const next = () => {
 const pre = () => {
     try {
         isLoading1.value = true
-        index.value--
-        emit('getMore', index.value, myConstant.PAGINATION.minLimit);
+        indexPage.value -= 1
+        emit('getMore', indexPage.value, myConstant.PAGINATION.minLimit);
     } catch (error) {
         console.log(error);
     }
