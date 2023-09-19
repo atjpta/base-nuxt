@@ -45,8 +45,8 @@ export const userStore = defineStore("userStore", {
             this.model = records[0]
             return records[0]
         },
-        async findAll(page, limit) {
-            const records = await baseService.get(`${this.urlBase}?page=${page}&limit=${limit}`)
+        async findAll(page, limit, key) {
+            const records = await baseService.get(`${this.urlBase}?page=${page}&limit=${limit}&key=${key}`)
             return records[0]
         },
 

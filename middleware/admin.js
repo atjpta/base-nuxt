@@ -1,5 +1,5 @@
 
-export default defineNuxtRouteMiddleware((to, from,) => {
+export default defineNuxtRouteMiddleware((to, from) => {
 
     let admin
 
@@ -11,13 +11,18 @@ export default defineNuxtRouteMiddleware((to, from,) => {
         }
     }
     else {
-        admin = authStore().admin
+        admin = adminStore().admin
+        if (admin?._id) {
+            adminStore().setToken()
+        } else {
+            adminStore().loadAuthState()
+        }
     }
     if (admin?._id) {
-        return navigateTo('/admin/manager/overview')
+        return
     }
     else {
-        navigateTo(to.fullPath)
+        navigateTo('/error/404')
     }
 
 

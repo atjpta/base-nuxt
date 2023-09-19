@@ -25,5 +25,10 @@ export const adminStore = defineStore("adminStore", {
             baseService.setToken(this.admin.accessToken)
             baseService.setRefreshToken(this.admin.refreshToken)
         },
+
+        async setToken() {
+            baseService.setToken(this.admin.accessToken)
+            baseService.setRefreshToken(this.admin.refreshToken)
+        }
     },
 });

@@ -1,10 +1,14 @@
 <template>
     <div>
-        <div class="flex justify-end">
+        <div class="flex justify-between my-5">
+
+            <OtherVSearch @search="search" />
+
             <div class="btn bg-teal-300  btn-sm">
                 <font-awesome-icon :icon="['fas', 'circle-plus']" />
                 {{ t('Add') }}
             </div>
+
         </div>
         <SkeletonVTable v-if="isLoading" />
         <OtherVTable v-show="!isLoading" :refresh-cb="refreshData" :get-more-cb="getMore" :total="total"
@@ -26,13 +30,13 @@ const total = ref(0)
 const indexPage = ref(1)
 const indexPageLimit = ref(1)
 const isLoading = ref(false)
+const key = ref('')
 const getMore = async (page, limit) => {
     try {
         isLoading.value = true
-        // await myMixin.testAwait()
         indexPage.value = page;
         indexPageLimit.value = limit
-        const result = await useUser.findAll(page, limit);
+        const result = await useUser.findAll(page, limit, key.value);
         listData.value = result?.list;
         total.value = result?.total;
     } catch (error) {
@@ -46,7 +50,11 @@ const getMore = async (page, limit) => {
 
 const refreshData = async () => {
     await getMore(indexPage.value, indexPageLimit.value)
+}
 
+const search = async (data) => {
+    key.value = data
+    await getMore(1, myConstant.PAGINATION.minLimit)
 }
 
 const getApi = async () => {
