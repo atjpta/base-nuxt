@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr class="w-full overflow-scroll">
         <td></td>
 
         <td>{{ data.fullName }}</td>

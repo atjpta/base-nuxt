@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-fit p-10 mx-auto rounded-md font-bold text-white text-center space-y-10 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400">
+        class="w-fit p-10 m-10 mx-auto rounded-md font-bold text-white text-center space-y-10 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400">
         <div class="text-4xl">
             {{ t("Error 500: server not working!!.") }}
         </div>

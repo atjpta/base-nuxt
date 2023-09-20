@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="flex justify-between my-5">
+    <div class="">
+        <div class="flex justify-between my-5 ">
 
             <OtherVSearch id="search-user" @search="search" />
 
@@ -12,10 +12,10 @@
         </div>
         <SkeletonVTable v-if="isLoading" />
 
-        <OtherVTable v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle" :list-data="listData"
+        <OtherVTable class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle" :list-data="listData"
             :cpn="AdminManagerVRecordUser" />
 
-        <div class="toast toast-center ">
+        <div class="toast lg:right-[calc(50%-144px)] right-1/2 translate-x-1/2">
             <OtherVPagination @getMore="getMore" :total="total" />
         </div>
 
