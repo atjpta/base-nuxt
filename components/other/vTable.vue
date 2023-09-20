@@ -16,9 +16,6 @@
                         v-for="(data, index) in listData" :key="index" @refreshData="refreshCb" :data="data" :is="cpn" />
                 </tbody>
             </table>
-            <div class="">
-                <OtherVPagination @getMore="getMoreCb" :total="total.valueOf()" />
-            </div>
         </div>
     </div>
 </template>
@@ -29,11 +26,9 @@
 const { t } = useI18n();
 
 const props = defineProps<{
-    total: Number;
     listData: any[];
     cpn: Component;
     listTitle: string[];
-    getMoreCb: any; // function
     refreshCb: any; // function
 }>();
 

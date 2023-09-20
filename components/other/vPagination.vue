@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="toast toast-center ">
+        <div class="">
             <div class="join">
                 <button :class="isLoading1 ? 'loading' : ''" @click="pre" :disabled="indexPage == 1"
                     class="join-item btn ">«</button>

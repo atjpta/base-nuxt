@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-between my-5">
 
-            <OtherVSearch @search="search" />
+            <OtherVSearch id="search-user" @search="search" />
 
             <div class="btn bg-teal-300  btn-sm">
                 <font-awesome-icon :icon="['fas', 'circle-plus']" />
@@ -11,8 +11,14 @@
 
         </div>
         <SkeletonVTable v-if="isLoading" />
-        <OtherVTable v-show="!isLoading" :refresh-cb="refreshData" :get-more-cb="getMore" :total="total"
-            :list-title="listTitle" :list-data="listData" :cpn="AdminManagerVRecordUser" />
+
+        <OtherVTable v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle" :list-data="listData"
+            :cpn="AdminManagerVRecordUser" />
+
+        <div class="toast toast-center ">
+            <OtherVPagination @getMore="getMore" :total="total" />
+        </div>
+
     </div>
 </template>
 

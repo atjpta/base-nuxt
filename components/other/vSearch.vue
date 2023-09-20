@@ -1,6 +1,7 @@
 <template>
     <div>
         <div>
+            {{ data }}
             <div class="join">
                 <input v-model="data" class="input input-bordered join-item" :placeholder="t('Search...')" />
                 <button @click="emit('search', data)" class="btn join-item bg-teal-400"><font-awesome-icon
@@ -11,8 +12,11 @@
 </template>
 
 <script setup>
+const props = defineProps({
+    id: String
+})
 const { t } = useI18n()
-const data = useState()
+const data = useState(props.id)
 const emit = defineEmits(['search'])
 onMounted(() => {
     if (data.value) {
