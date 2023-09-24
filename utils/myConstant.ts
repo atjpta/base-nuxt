@@ -8,5 +8,6 @@ export class myConstant {
   static PAGINATION = {
     minPage: 1,
     minLimit: 4,
+    maxLimit: Number.MAX_SAFE_INTEGER,
   };
 }

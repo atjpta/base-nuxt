@@ -1,9 +1,8 @@
-
-import { UploadVUploadImage } from '.nuxt/components';
 <template>
     <div>
         <dialog ref="modal" class="modal">
-            <form method="dialog" class="modal-box glass bg-gradient-to-r from-green-400/50 via-cyan-400/50 to-blue-400/50">
+            <form method="dialog"
+                class="modal-box py-10 glass bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 bg-base-100">
                 <div class="space-y-5">
                     <div>
                         <div class="text-2xl">

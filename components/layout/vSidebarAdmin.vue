@@ -42,6 +42,13 @@ const list = ref([
         list: [],
     },
     {
+        icon: `music`,
+        title: 'song',
+        url: '/admin/manager/music',
+        level: 3,
+        list: [],
+    },
+    {
         icon: `microphone-lines`,
         title: 'singer',
         url: '/admin/manager/singer',

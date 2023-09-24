@@ -107,5 +107,12 @@
     "Can't create!!": "Không thể tạo thêm!!",
     "Create success!!": "Tạo thành công!!",
     "genre": "thể loại",
-    "country": "quốc gia"
+    "country": "quốc gia",
+    "song": "bài hát",
+    "Name song": "Tên bài hát",
+    "File song": "file bài hát",
+    "Not empty!!": "Không được để trống!!",
+    "Please enter genre!!": "Hãy nhập thể loại!!",
+    "Please enter singer!!": "Hãy nhập ca sĩ!!",
+    "Please enter country!!": "Hãy nhập quốc gia!!"
 }

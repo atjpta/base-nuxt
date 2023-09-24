@@ -1,20 +1,45 @@
 <template>
     <div>
-        <audio v-if="data" class="my-1" controls :src="data" ref="audio">
-            <source src="" type="audio/mpeg" />
-        </audio>
-        <input class="file-input file-input-bordered file-input-primary w-full max-w-xs" type="file"
-            accept="audio/mp3,audio/*;capture=microphone" @change="useSong.previewFiles($event)" />
+
+        <div v-if="data.url">
+            <audio ref="audio" class="my-1  h-8 w-full max-w-xs" :src="data.url" controls>
+                <source type="audio/mpeg" />
+            </audio>
+        </div>
+
+        <div class="flex justify-between">
+            <input ref="input" class="file-input file-input-sm file-input-bordered file-input-success w-full max-w-xs"
+                type="file" @change="previewFiles" accept="audio/mp3,audio/*;capture=microphone" />
+        </div>
+
     </div>
 </template>
 
 <script setup>
-import { songStore } from "~~/stores/song.store";
-const useSong = songStore();
 const props = defineProps({
-    data: String,
-    time: String,
-});
+    data: Object
+})
+const { t } = useI18n()
+const previewSong = ref()
+const previewFiles = (e) => {
+    console.log(audio.value);
+    const file = e.target.files[0];
+    const theReader = new FileReader();
+    theReader.onloadend = async () => {
+        previewSong.value = theReader.result;
 
-const audio = ref();
+    };
+    theReader.readAsDataURL(file);
+    props.data.file = file;
+}
+
+const audio = ref()
+
+const input = ref()
+
+const cancel = () => {
+    input.value.value = null
+    props.data.file = null
+    previewSong.value = null
+}
 </script>

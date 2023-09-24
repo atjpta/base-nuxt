@@ -1,14 +1,13 @@
 import { defineStore } from "pinia";
 import service from "~/services/base.service";
 const baseService = new service.BaseService()
-export const countryStore = defineStore("countryStore", {
-    id: 'country',
+export const musicStore = defineStore("musicStore", {
+    id: 'music',
     state() {
         return {
             model: {},
             list: [],
-            urlBase: '/countries',
-
+            urlBase: '/musics',
         };
     },
     getters: {

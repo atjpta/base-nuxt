@@ -17,7 +17,7 @@ export const singerStore = defineStore("singerStore", {
     actions: {
         async search(key, page, limit) {
             const records = await baseService.get(`${this.urlBase}?page=${page}&limit=${limit}&key=${key}`)
-            this.list = records[0]
+            this.list = records[0].list
             return records[0]
         },
 

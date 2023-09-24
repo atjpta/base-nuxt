@@ -2,7 +2,7 @@
   <div>
     <!-- xem trước ảnh -->
     <transition name="bounce">
-      <div>
+      <div v-if="previewImage || data.url">
         <img class="bg-transparent rounded-2xl my-2 w-32 h-32" :src="previewImage || data.url"
           :alt="t(`let's select file for device`)" />
       </div>
