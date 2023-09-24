@@ -100,5 +100,12 @@
     "Can't delete!!": "Không thể xóa!!",
     "Can't delete ROOT!!": "Không thể xóa ROOT!!",
     "You need higher permissions to delete!!": "Bạn cần quyền hạn cao hơn để xóa!!",
-    "Search...": "Tìm kiếm..."
+    "Search...": "Tìm kiếm...",
+    "singer": "ca sĩ",
+    "Enter name...": "Nhập tên...",
+    "let's select file for device": "Hãy chọn file từ thiết bị",
+    "Can't create!!": "Không thể tạo thêm!!",
+    "Create success!!": "Tạo thành công!!",
+    "genre": "thể loại",
+    "country": "quốc gia"
 }

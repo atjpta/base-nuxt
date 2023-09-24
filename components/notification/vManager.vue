@@ -2,7 +2,7 @@
     <div>
         <div class="toast toast-top h-fit z-50" :class="list.length > 0 ? '' : 'p-0'">
             <!-- <transition :name="bounce"> -->
-            <div class="space-y-5">
+            <div class="space-y-5 z-50">
                 <component v-for="i in list" :key="i" :is="i.cpn" :index="i.key" />
             </div>
             <!-- </transition> -->
