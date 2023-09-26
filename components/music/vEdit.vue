@@ -1,6 +1,6 @@
 <template>
     <div>
-        <dialog v-if="data" ref="modal" class="modal">
+        <dialog v-if="data" ref="modal" class="modal modal-top sm:modal-middle">
             <form method="dialog"
                 class="modal-box py-10 glass bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 bg-base-100">
                 <div class="space-y-5">

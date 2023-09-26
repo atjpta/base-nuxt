@@ -7,7 +7,7 @@
                 <div class="drawer-content flex flex-col">
                     <!-- Navbar -->
                     <LayoutVHeader class="" />
-                    <div class="container sm:mx-auto px-5 duration-500">
+                    <div class="container sm:mx-auto duration-500">
                         <slot />
                     </div>
                 </div>
