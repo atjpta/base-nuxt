@@ -1,7 +1,10 @@
 <template>
     <div>
 
-        <OtherVSlide :listDefault="dataNews" />
+        <div class="space-y-10">
+            <HomeVSlide :listDefault="dataNews" />
+            <HomeVNew />
+        </div>
     </div>
 </template>
 
