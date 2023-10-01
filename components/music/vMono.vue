@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click="play">
         <div
             class="glass flex space-x-5 w-fit rounded-2xl h-40 p-4 bg-gradient-to-r hover:bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30 ">
             <div>
@@ -52,6 +52,15 @@
 const props = defineProps({
     data: Object
 })
+
+const usePlay = playStore()
+
+function play() {
+    usePlay.song = props.data;
+    usePlay.play = true;
+    // usePlay.playAudioFirst(props.data);
+
+}
 const { t } = useI18n()
 </script>
 

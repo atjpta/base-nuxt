@@ -17,14 +17,9 @@
 const useMusic = musicStore()
 const data = ref()
 
-
-const usePlay = playStore();
-
-
 const getApi = async () => {
     data.value = await useMusic.search('', myConstant.PAGINATION.minPage, myConstant.PAGINATION.minLimit)
     data.value = data.value.list
-    usePlay.setList(data.value);
 }
 
 onMounted(() => {

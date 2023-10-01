@@ -20,6 +20,12 @@ export const musicStore = defineStore("musicStore", {
             return records[0]
         },
 
+        async getRandom(id, size) {
+            const records = await baseService.get(`${this.urlBase}/random/${id}?size=${size}`)
+            this.list = records
+            return records
+        },
+
         async update(id, data) {
             const records = await baseService.put(`${this.urlBase}/${id}`, data)
             this.model = records[0]

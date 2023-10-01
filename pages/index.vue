@@ -1,9 +1,10 @@
 <template>
     <div>
-
         <div class="space-y-10">
             <HomeVSlide :listDefault="dataNews" />
             <HomeVNew />
+            <HomeVSinger />
+            <HomeVGenre />
         </div>
     </div>
 </template>

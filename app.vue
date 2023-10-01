@@ -31,4 +31,9 @@
 .bounce-enter-active {
   animation: bounce-in 0.5s;
 }
+
+:root {
+  --icon-color: rgb(0, 247, 255);
+  --icon-color-red: rgb(255, 0, 0);
+}
 </style>

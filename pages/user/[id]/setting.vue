@@ -12,6 +12,13 @@
             </div>
             <SettingVLanguage />
         </div>
+
+        <div class="flex items-center">
+            <div class="w-40">
+                {{ t("Back ground:") }}
+            </div>
+            <SettingVBackGround />
+        </div>
     </div>
 </template>
 
