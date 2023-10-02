@@ -12,7 +12,7 @@ export const playStore = defineStore("playStore", {
             loadWave: null,
             play: false,
             audio: {},
-            // audio2: {},
+            audio2: {},
             song: {},
             list: [],
             duration: '0:00',
@@ -97,7 +97,7 @@ export const playStore = defineStore("playStore", {
         timeUpdate() {
             this.currentTime = this.formatTime(this.audio.currentTime);
             this.currentTimeSave = this.audio.currentTime
-            // this.audio2.currentTime = this.audio.currentTime
+            this.audio2.currentTime = this.audio.currentTime
 
         },
         loadedMetaData() {
@@ -109,7 +109,7 @@ export const playStore = defineStore("playStore", {
                 if (this.play) {
                     this.play = false
                     this.audio.pause();
-                    // this.audio2.pause();
+                    this.audio2.pause();
 
                 }
                 else {
@@ -119,14 +119,14 @@ export const playStore = defineStore("playStore", {
                     }
                     this.play = true
                     this.audio.play();
-                    // this.audio2.play();
+                    this.audio2.play();
                 }
             }
         },
 
         volumeChange() {
             this.volumeCurrent = this.audio.volume
-            // this.audio2.volume = this.audio.volume
+            this.audio2.volume = this.audio.volume
             if (this.volumeCurrent == 0) {
                 this.iconVolume = "fa-solid fa-volume-off"
             } else if (this.volumeCurrent > 0.8) {
@@ -139,12 +139,12 @@ export const playStore = defineStore("playStore", {
         mute() {
             if (this.audio.volume == 0) {
                 this.audio.volume = this.volumeCurrent2;
-                // this.audio2.volume = this.volumeCurrent2;
+                this.audio2.volume = this.volumeCurrent2;
             }
             else {
                 this.volumeCurrent2 = this.audio.volume
                 this.audio.volume = 0
-                // this.audio2.volume = 0
+                this.audio2.volume = 0
             }
         },
         next() {

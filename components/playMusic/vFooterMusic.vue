@@ -146,10 +146,10 @@
                     <source src="" type="audio/mpeg" />
                 </audio>
 
-                <!-- <audio crossorigin="anonymous" v-show="false" :loop="usePlay.loop" :autoplay="true" :src="usePlay.song.url"
+                <audio crossorigin="anonymous" v-show="false" :loop="usePlay.loop" :autoplay="true" :src="usePlay.song.url"
                     ref="audio2" controls>
                     <source src="" type="audio/mpeg" />
-                </audio> -->
+                </audio>
 
             </div>
         </div>
@@ -170,7 +170,7 @@ const sourceWave = useState('loadSource')
 onMounted(() => {
 
     usePlay.audio = audio.value;
-    // usePlay.audio2 = audio2.value;
+    usePlay.audio2 = audio2.value;
     usePlay.loadStore();
     usePlay.router = router;
 
@@ -197,7 +197,7 @@ const getSource = () => {
             this.audioContext = new window.AudioContext();
             this.analyser = this.audioContext.createAnalyser();
             try {
-                this.source = this.audioContext.createMediaElementSource(audio.value);
+                this.source = this.audioContext.createMediaElementSource(audio2.value);
             } catch (error) {
                 console.log(error);
             }
