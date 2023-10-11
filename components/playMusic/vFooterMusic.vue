@@ -146,10 +146,10 @@
                     <source src="" type="audio/mpeg" />
                 </audio>
 
-                <audio crossorigin="anonymous" v-show="false" :loop="usePlay.loop" :autoplay="true" :src="usePlay.song.url"
+                <!-- <audio crossorigin="anonymous" v-show="false" :loop="usePlay.loop" :autoplay="true" :src="usePlay.song.url"
                     ref="audio2" controls>
                     <source src="" type="audio/mpeg" />
-                </audio>
+                </audio> -->
 
             </div>
         </div>
@@ -159,22 +159,22 @@
 <script setup>
 const usePlay = playStore();
 const audio = ref();
-const audio2 = ref();
+// const audio2 = ref();
 const open = useState('openPlayMusic', () => true)
 const openVolume = ref(false);
 const heart = ref();
 const router = useRouter();
 
-const sourceWave = useState('loadSource')
+// const sourceWave = useState('loadSource')
 
 onMounted(() => {
 
     usePlay.audio = audio.value;
-    usePlay.audio2 = audio2.value;
+    // usePlay.audio2 = audio2.value;
     usePlay.loadStore();
     usePlay.router = router;
 
-    setDefault()
+    // setDefault()
 
 
 });
@@ -184,47 +184,47 @@ window.addEventListener("beforeunload", () => {
     usePlay.saveStore();
 });
 
-const setDefault = () => {
-    usePlay.getSource = getSource
-}
+// const setDefault = () => {
+//     usePlay.getSource = getSource
+// }
 
 
-const getSource = () => {
-    class Source {
-        constructor(fftSize) {
-            this.initialized = false;
-            window.AudioContext = window.AudioContext || window.webkitURL.AudioContext;
-            this.audioContext = new window.AudioContext();
-            this.analyser = this.audioContext.createAnalyser();
-            try {
-                this.source = this.audioContext.createMediaElementSource(audio2.value);
-            } catch (error) {
-                console.log(error);
-            }
+// const getSource = () => {
+//     class Source {
+//         constructor(fftSize) {
+//             this.initialized = false;
+//             window.AudioContext = window.AudioContext || window.webkitURL.AudioContext;
+//             this.audioContext = new window.AudioContext();
+//             this.analyser = this.audioContext.createAnalyser();
+//             try {
+//                 this.source = this.audioContext.createMediaElementSource(audio2.value);
+//             } catch (error) {
+//                 console.log(error);
+//             }
 
-            // console.log(this.analyser);
-            this.analyser.fftSize = fftSize;
-            const bufferLength = this.analyser.frequencyBinCount;
-            this.dataArray = new Uint8Array(bufferLength);
-            this.source.connect(this.analyser);
-            this.initialized = true;
-        }
-        getSamples() {
-            this.analyser.getByteFrequencyData(this.dataArray);
-            let normSamples = [...this.dataArray].map((e) => e / 128 - 1);
-            return normSamples;
-        }
-        getVolume() {
-            this.analyser.getByteFrequencyData(this.dataArray);
-            let normSamples = [...this.dataArray].map((e) => e / 128 - 1);
-            let sum = 0;
-            for (let i = 0; i < normSamples.length; i++) {
-                sum += normSamples[i] * normSamples[i];
-            }
-            let volume = Math.sqrt(sum / normSamples.length);
-            return volume;
-        }
-    }
-    sourceWave.value = new Source(1024)
-}
+//             // console.log(this.analyser);
+//             this.analyser.fftSize = fftSize;
+//             const bufferLength = this.analyser.frequencyBinCount;
+//             this.dataArray = new Uint8Array(bufferLength);
+//             this.source.connect(this.analyser);
+//             this.initialized = true;
+//         }
+//         getSamples() {
+//             this.analyser.getByteFrequencyData(this.dataArray);
+//             let normSamples = [...this.dataArray].map((e) => e / 128 - 1);
+//             return normSamples;
+//         }
+//         getVolume() {
+//             this.analyser.getByteFrequencyData(this.dataArray);
+//             let normSamples = [...this.dataArray].map((e) => e / 128 - 1);
+//             let sum = 0;
+//             for (let i = 0; i < normSamples.length; i++) {
+//                 sum += normSamples[i] * normSamples[i];
+//             }
+//             let volume = Math.sqrt(sum / normSamples.length);
+//             return volume;
+//         }
+//     }
+//     sourceWave.value = new Source(1024)
+// }
 </script>

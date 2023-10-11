@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="">
-            <WaveSongVWave1 :data="usePlay.song" class=" " />
+        <div>
+            <MusicVCard :data="usePlay.song" />
         </div>
     </div>
 </template>
@@ -19,7 +19,6 @@ const getApi = async () => {
 
 const listData = computed(() => {
     if (useMusic.list) {
-
         return useMusic.list.map((e, i) => {
             return {
                 id: i,
