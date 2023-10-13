@@ -40,6 +40,7 @@ const props = defineProps({
 const usePlay = playStore()
 
 function play() {
+    usePlay.dataOld.currentTimeSave = 0
     usePlay.song = props.data;
     usePlay.playAudio()
     navigateTo(`/music/${props.data._id}`)
