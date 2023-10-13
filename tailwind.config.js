@@ -17,10 +17,21 @@ module.exports = {
             'opacity': '0',
           },
         },
+        bounce: {
+          '0%, 100%': {
+            'transform': 'translateY(-10%)',
+            'animation-timing-function': 'cubic - bezier(0.8, 0, 1, 1)',
+          },
+          '50%': {
+            'transform': 'translateY(0)',
+            'animation-timing-function': 'cubic - bezier(0, 0, 0.2, 1)',
+          }
+        }
       },
       animation: {
         'timer': '1s linear all',
         'spin-slow': 'spin 5s linear infinite',
+        'bounce-slow': 'bounce 1s infinite'
 
       },
     },

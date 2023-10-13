@@ -40,8 +40,7 @@
                         </div>
                     </div>
                     <div v-else class="flex justify-between items-center">
-                        <div @click="navigateTo(`/music/${usePlay.song.id || usePlay.song._id}`)"
-                            class="flex space-x-3 cursor-pointer">
+                        <div @click="navigateTo(`/music/${usePlay.song._id}`)" class="flex space-x-3 cursor-pointer">
                             <!-- thông tin bài hát -->
                             <div>
                                 <img :class="usePlay.play ? 'animate-spin-slow' : ''" class="h-14 w-14 rounded-full"
@@ -58,7 +57,7 @@
                             </div>
                         </div>
 
-                        <div class="dropdown sm:dropdown-top sm:dropdown-right dropdown-left dropdown-top">
+                        <!-- <div class="dropdown sm:dropdown-top sm:dropdown-right dropdown-left dropdown-top">
                             <label tabindex="0" class="btn btn-sm btn-circle btn-ghost hover:text-blue-400">
                                 <font-awesome-icon class="text-2xl" :icon="['fas', 'ellipsis']" />
                             </label>
@@ -68,16 +67,16 @@
                                     <li
                                         class="hover-bordered no-animation btn btn-ghost btn-block justify-start justify-items-center">
                                         <a>
-                                            <!-- <PlaylistVAdd :id="usePlay.song.id || usePlay.song._id" /> -->
+                                            <PlaylistVAdd :id="usePlay.song.id || usePlay.song._id" />
                                         </a>
                                     </li>
-                                    <!-- <li @click="showDialog()" class="hover-bordered btn btn-ghost btn-block justify-start">
+                                    <li @click="showDialog()" class="hover-bordered btn btn-ghost btn-block justify-start">
                                         <OtherVIcon class-icon="text-2xl w-10 mr-1 " icon="fa-solid fa-comments" />
                                         Bình luận
-                                    </li> -->
+                                    </li>
                                 </div>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -99,13 +98,11 @@
                             <font-awesome-icon class=" text-2xl" :icon="['fas', 'backward-step']" />
                         </div>
                         <!-- nút chơi nè -->
-                        <div v-on:keydown.space="usePlay.playAudio()" @click="usePlay.playAudio()"
+                        <button autofocus="true" @keydown.space.prevent="usePlay.playAudio()" @click="usePlay.playAudio()"
                             class="btn btn-circle text-teal-500 btn-ghost hover:bg-transparent hover:text-blue-400">
-
-
                             <font-awesome-icon class="text-4xl ring-4 ring-blue-400/50 hover:ring-green-400/50 rounded-full"
                                 :icon="usePlay.play ? 'fa-solid fa-circle-pause' : 'fa-solid fa-circle-play'" />
-                        </div>
+                        </button>
                         <div @click="usePlay.next()" class="btn btn-sm btn-circle text-teal-500 btn-ghost">
                             <font-awesome-icon class="text-2xl" :icon="['fas', 'forward-step']" />
                         </div>
@@ -131,8 +128,8 @@
                             <!-- <span id="current-time">0:00</span> -->
                             {{ usePlay.currentTime || "0:00" }}
                         </div>
-                        <input type="range" min="0" :max="usePlay.audio.duration" v-model="usePlay.audio.currentTime"
-                            class="range range-success range-lg h-2 borr ring-2 rounded-tl-full rounded-br-full rounded-none skew-x-[-45deg] bg-transparent w-full bg-gradient-to-l from-green-400/50 via-cyan-400 to-blue-400" />
+                        <input type="range" min="0" :max="maxTime" v-model="usePlay.audio.currentTime"
+                            class="range range-success range-lg h-2 ring-2 rounded-tl-full rounded-br-full rounded-none skew-x-[-45deg] bg-transparent w-full bg-gradient-to-l from-green-400/50 via-cyan-400 to-blue-400" />
                         <div>
                             {{ usePlay.duration || "0:00" }}
                         </div>
@@ -166,6 +163,10 @@ const heart = ref();
 const router = useRouter();
 
 // const sourceWave = useState('loadSource')
+
+const maxTime = computed(() => {
+    return usePlay.audio.duration || usePlay.durationMusic
+})
 
 onMounted(() => {
 

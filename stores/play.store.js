@@ -12,10 +12,11 @@ export const playStore = defineStore("playStore", {
             loadWave: null,
             play: false,
             audio: {},
-            audio2: {},
+            // audio2: {},
             song: {},
             list: [],
             duration: '0:00',
+            durationMusic: 1,
             currentTime: '0:00',
             currentTimeSave: '0:00',
             volumeCurrent: 1,
@@ -25,6 +26,7 @@ export const playStore = defineStore("playStore", {
             loop: false,
             random: false,
             image: 'https://khydqeqdyigehckvjaci.supabase.co/storage/v1/object/public/hmusic-files/image/city.jpg',
+            dataOld: {}
         }
     },
     getters: {
@@ -46,8 +48,8 @@ export const playStore = defineStore("playStore", {
                 this.indexCurrent = data.indexCurrent
                 this.loop = data.loop
                 this.random = data.random
-                this.play = false
-
+                this.dataOld = data;
+                this.play = !data.play
             }
         },
 
@@ -64,7 +66,7 @@ export const playStore = defineStore("playStore", {
                 indexCurrent: this.indexCurrent,
                 loop: this.loop,
                 random: this.random,
-
+                play: this.play
             }));
 
         },
@@ -97,10 +99,13 @@ export const playStore = defineStore("playStore", {
         timeUpdate() {
             this.currentTime = this.formatTime(this.audio.currentTime);
             this.currentTimeSave = this.audio.currentTime
-            this.audio2.currentTime = this.audio.currentTime
+            // this.audio2.currentTime = this.audio.currentTime
 
         },
         loadedMetaData() {
+            this.durationMusic = this.audio.duration
+            this.audio.currentTime = this.dataOld?.currentTimeSave
+            this.playAudio()
             this.duration = this.formatTime(this.audio.duration);
         },
 
@@ -109,7 +114,7 @@ export const playStore = defineStore("playStore", {
                 if (this.play) {
                     this.play = false
                     this.audio.pause();
-                    this.audio2.pause();
+                    // this.audio2.pause();
 
                 }
                 else {
@@ -119,14 +124,14 @@ export const playStore = defineStore("playStore", {
                     }
                     this.play = true
                     this.audio.play();
-                    this.audio2.play();
+                    // this.audio2.play();
                 }
             }
         },
 
         volumeChange() {
             this.volumeCurrent = this.audio.volume
-            this.audio2.volume = this.audio.volume
+            // this.audio2.volume = this.audio.volume
             if (this.volumeCurrent == 0) {
                 this.iconVolume = "fa-solid fa-volume-off"
             } else if (this.volumeCurrent > 0.8) {
@@ -139,12 +144,12 @@ export const playStore = defineStore("playStore", {
         mute() {
             if (this.audio.volume == 0) {
                 this.audio.volume = this.volumeCurrent2;
-                this.audio2.volume = this.volumeCurrent2;
+                // this.audio2.volume = this.volumeCurrent2;
             }
             else {
                 this.volumeCurrent2 = this.audio.volume
                 this.audio.volume = 0
-                this.audio2.volume = 0
+                // this.audio2.volume = 0
             }
         },
         next() {
@@ -160,7 +165,7 @@ export const playStore = defineStore("playStore", {
                 this.song = this.list[this.indexCurrent];
             }
             if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
-                this.router.push(`/music/${this.song.id ?? this.song._id}`)
+                this.router.push(`/music/${this.song._id}`)
             }
         },
 
@@ -177,7 +182,7 @@ export const playStore = defineStore("playStore", {
                 this.song = this.list[this.indexCurrent];
             }
             if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
-                this.router.push(`/music/${this.song.id ?? this.song._id}`)
+                this.router.push(`/music/${this.song._id}`)
             }
         },
 
@@ -190,7 +195,7 @@ export const playStore = defineStore("playStore", {
             }
 
             if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
-                this.router.push(`/music/${this.song.id ?? this.song._id}`)
+                this.router.push(`/music/${this.song._id}`)
             }
 
         },

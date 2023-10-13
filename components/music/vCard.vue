@@ -10,7 +10,9 @@
                     <div
                         class="flex md:flex-row flex-col  justify-center xl:space-x-20 xl:mx-5 space-y-5 md:space-y-0 md:space-x-5">
                         <div class="xl:w-96 md:w-60 xl:h-96 md:h-60">
-                            <img class=" md:rounded-2xl xl:w-96 md:w-60 xl:h-96 md:h-60" :src="data.url_image" alt="main">
+                            <img :class="usePlay.play ? 'animate-bounce-slow' : ''"
+                                class=" mx-auto md:rounded-2xl xl:w-96 md:w-60 xl:h-96 md:h-60 h-80 w-80"
+                                :src="data.url_image" alt="main">
                         </div>
 
                         <div class="xl:w-96 md:w-60 xl:h-96 md:h-60  flex flex-col justify-between">
@@ -67,9 +69,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
 
                 </div>
@@ -84,6 +83,8 @@ const props = defineProps({
 });
 
 const { t } = useI18n()
+
+const usePlay = playStore()
 </script>
 
 <style></style>
