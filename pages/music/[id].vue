@@ -13,9 +13,11 @@ const route = useRoute()
 const useMusic = musicStore()
 const usePlay = playStore()
 const getApi = async () => {
-    useMusic.list.push(usePlay.song)
+    // useMusic.list.push(usePlay.song)
     await useMusic.getRandom(route.params.id, myConstant.PAGINATION.minLimit)
-    usePlay.list = useMusic.list
+    if (useMusic.list) {
+        usePlay.list = useMusic.list
+    }
 }
 
 const listData = computed(() => {

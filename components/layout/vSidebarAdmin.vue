@@ -70,6 +70,13 @@ const list = ref([
         list: [],
     },
     {
+        icon: `image`,
+        title: 'news',
+        url: '/admin/manager/news',
+        level: 3,
+        list: [],
+    },
+    {
         icon: `user`,
         title: 'level1',
         url: '/admin/manager/level1',

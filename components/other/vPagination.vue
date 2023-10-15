@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-show="!delayShow">
         <div class="">
             <div class="join">
                 <button :class="isLoading1 ? 'loading' : ''" @click="pre" :disabled="indexPage == 1"
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <dialog id="modelPagination" class="modal ">
+        <dialog id="modelPagination" class="modal">
             <form method="dialog" class="modal-box">
                 <h3 class="font-bold text-lg">{{ t("Select page") }}</h3>
 
@@ -44,6 +44,14 @@ const props = defineProps({
 const maxPage = computed(() => {
     return Math.ceil(props.total / myConstant.PAGINATION.minLimit)
 })
+
+const delayShow = ref(true)
+
+const setDelay = () => {
+    setTimeout(() => {
+        delayShow.value = false
+    }, 500);
+}
 
 const isLoading1 = ref(false)
 const isLoading2 = ref(false)
@@ -96,6 +104,10 @@ const pre = () => {
     }
 
 }
+
+onMounted(() => {
+    setDelay()
+})
 
 </script>
 

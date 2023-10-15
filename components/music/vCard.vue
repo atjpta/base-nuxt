@@ -48,12 +48,11 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="mt-5 md:mt-0 flex justify-around">
-                                <div
+                                <div @click="heart" :class="isHeart ? 'text-red-500' : ''"
                                     class="xl:text-2xl btn xl:btn-md btn-sm btn-ghost shadow-md bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30">
                                     <font-awesome-icon :icon="['fas', 'heart']" />
-                                    1
+                                    {{ lengthHeart }}
                                 </div>
 
                                 <div
@@ -67,6 +66,11 @@
                                     <font-awesome-icon :icon="['fas', 'plus']" />
                                     <font-awesome-icon :icon="['fas', 'icons']" />
                                 </div>
+
+                                <a :href="baseService.BaseService.baseUrl + `${useMusic.urlBase}/download/${data._id}`"
+                                    class="xl:text-2xl btn xl:btn-md btn-sm btn-ghost shadow-md bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30">
+                                    <font-awesome-icon :icon="['fas', 'download']" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -85,6 +89,62 @@ const props = defineProps({
 const { t } = useI18n()
 
 const usePlay = playStore()
+const useMusic = musicStore()
+const useFavorite = favoriteStore()
+const useAuth = authStore()
+const isHeart = useState(`isHeart`)
+const lengthHeart = ref(0)
+const route = useRoute()
+const heart = async () => {
+    isHeart.value = !isHeart.value
+    if (isHeart.value) {
+        lengthHeart.value += 1
+        await useFavorite.create({
+            model: props.data._id,
+            modelType: 'musics'
+        });
+    }
+    else {
+        lengthHeart.value -= 1
+        await useFavorite.deleteOne(props.data._id);
+    }
+}
+
+const getApi = async () => {
+    try {
+        if (route.params.id) {
+            lengthHeart.value = await useFavorite.findModelLength(route.params.id)
+            if (useAuth.user._id) {
+                getHeart()
+            }
+        }
+    }
+    catch (error) {
+        lengthHeart.value = 0
+    }
+}
+
+const getHeart = async () => {
+    try {
+        const data = await useFavorite.findOneByUser(props.data._id)
+        if (data) {
+            isHeart.value = true;
+        }
+    }
+    catch (error) {
+        isHeart.value = false
+    }
+
+}
+
+
+onMounted(() => {
+    getApi()
+})
+
+
+
+
 </script>
 
 <style></style>

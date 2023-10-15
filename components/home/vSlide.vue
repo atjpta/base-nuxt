@@ -1,32 +1,30 @@
 <template>
     <div>
         <div class="container sm:my-10 mx-auto">
-            <div class="w-full lg:h-[450px] h-60 overflow-hidden relative">
+            <div class="w-full lg:h-96 h-60 overflow-hidden relative ">
                 <div class="w-fit mx-auto">
-                    <div
-                        class="w-fit h-full  absolute right-1/2 translate-x-1/2  scroll-smooth carousel carousel-center rounded-box">
+                    <div v-if="list[0]"
+                        class="w-fit lg:h-96 h-60 overflow-hidden  absolute right-1/2 translate-x-1/2  scroll-smooth carousel carousel-center rounded-box">
                         <TransitionGroup name="list">
                             <div class=" lg:mx-[25px] lg:w-[600px] lg:h-96 w-80 h-60  hover:scale-110 duration-300"
-                                v-for="(i, index) in list" :key="i.id">
+                                v-for="(i, index) in list" :key="i._id">
                                 <div>
                                     <img @click="select(index)"
                                         class="lg:w-[600px] lg:h-96 w-80 h-60 duration-300 cursor-pointer "
                                         :class="index == 1 ? 'scale-100' : 'scale-75 opacity-50'"
-                                        :src="i.url || `~/assets/image/1.jpg`" />
+                                        :src="i.image || `~/assets/image/1.jpg`" />
                                 </div>
                             </div>
                         </TransitionGroup>
                     </div>
                 </div>
-                <div>
-                    <div class=" absolute left-2 top-1/2 -translate-y-1/2 ">
-                        <div @click="pre" class="btn btn-circle btn-sm btn-outline">
-                            {{ '<' }} </div>
-                        </div>
-                        <div class=" absolute right-2 top-1/2 -translate-y-1/2 ">
-                            <div @click="next" class="btn btn-circle btn-sm btn-outline">
-                                {{ '>' }}
-                            </div>
+                <div class=" absolute left-2 top-1/2 -translate-y-1/2 ">
+                    <div @click="pre" class="btn btn-circle btn-sm btn-outline">
+                        {{ '<' }} </div>
+                    </div>
+                    <div class=" absolute right-2 top-1/2 -translate-y-1/2 ">
+                        <div @click="next" class="btn btn-circle btn-sm btn-outline">
+                            {{ '>' }}
                         </div>
                     </div>
                 </div>

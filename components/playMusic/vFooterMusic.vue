@@ -85,7 +85,8 @@
                     <div class="flex items-center justify-center space-x-5">
                         <div ref="heart">
                             <!-- <FavoriteVHeart type="music" :model="usePlay.song.id || usePlay.song._id" /> -->
-                            <font-awesome-icon class="text-2xl" :icon="['fas', 'heart']" />
+                            <font-awesome-icon :class="isHeart ? 'text-red-500' : ''" class="text-2xl"
+                                :icon="['fas', 'heart']" />
                         </div>
 
                         <div @click="usePlay.random = !usePlay.random" data-tip="phát ngẫu nhiên"
@@ -161,11 +162,37 @@ const open = useState('openPlayMusic', () => true)
 const openVolume = ref(false);
 const heart = ref();
 const router = useRouter();
-
+const isHeart = useState(`isHeart`)
+const useFavorite = favoriteStore()
+const useAuth = authStore()
+const song = computed(() => {
+    return usePlay.song._id
+})
 // const sourceWave = useState('loadSource')
 
 const maxTime = computed(() => {
     return usePlay.audio.duration || usePlay.durationMusic
+})
+
+
+const getHeart = async () => {
+    try {
+        if (usePlay.song._id) {
+            const data = await useFavorite.findOneByUser(usePlay.song._id)
+            if (data) {
+                isHeart.value = true;
+            }
+        }
+
+    }
+    catch (error) {
+        isHeart.value = false
+    }
+
+}
+
+watch(song, () => {
+    getHeart()
 })
 
 onMounted(() => {
@@ -174,7 +201,6 @@ onMounted(() => {
     // usePlay.audio2 = audio2.value;
     usePlay.loadStore();
     usePlay.router = router;
-
     // setDefault()
 
 

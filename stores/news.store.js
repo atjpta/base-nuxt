@@ -1,13 +1,14 @@
 import { defineStore } from "pinia";
 import service from "~/services/base.service";
 const baseService = new service.BaseService()
-export const musicStore = defineStore("musicStore", {
-    id: 'music',
+export const newsStore = defineStore("newsStore", {
+    id: 'news',
     state() {
         return {
             model: {},
-            list: null,
-            urlBase: '/musics',
+            list: [],
+            urlBase: '/news',
+
         };
     },
     getters: {
@@ -18,12 +19,6 @@ export const musicStore = defineStore("musicStore", {
             const records = await baseService.get(`${this.urlBase}?page=${page}&limit=${limit}&key=${key}`)
             this.list = records[0].list
             return records[0]
-        },
-
-        async getRandom(id, size) {
-            const records = await baseService.get(`${this.urlBase}/random/${id}?size=${size}`)
-            this.list = records
-            return records
         },
 
         async update(id, data) {

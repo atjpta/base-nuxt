@@ -1,11 +1,10 @@
 <template>
     <div>
-        <div
-            class=" flex space-x-5 w-full  h-24 p-4  hover:bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30 ">
+        <div @click="play"
+            class=" flex space-x-5 w-full  h-24 p-4 cursor-pointer hover:bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30 ">
             <div>
                 <div class="w-16 h-16 overflow-hidden rounded-2xl cursor-pointer">
-                    <img @click="play" class="rounded-2xl w-16 h-16 duration-500  hover:scale-110" :src="data?.url_image"
-                        alt="avatar">
+                    <img class="rounded-2xl w-16 h-16 duration-500  hover:scale-110" :src="data?.url_image" alt="avatar">
                 </div>
             </div>
 
@@ -13,8 +12,8 @@
                 <div class="space-y-1">
                     <div class="font-extrabold text-2xl">{{ data?.name }}</div>
                     <div class="flex space-x-2 items-center">
-                        <div @click="navigateTo(`/singer/${i._id}`)"
-                            class="btn btn-xs btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
+                        <div @click="goToSinger($event, i._id)"
+                            class=" btn btn-xs btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                             v-for="i in data?.singer" :key="i._id">
                             {{ i.name }}
                         </div>
@@ -39,10 +38,12 @@ const props = defineProps({
 
 const usePlay = playStore()
 
+const goToSinger = (e, id) => {
+    e.stopPropagation()
+    navigateTo(`/singer/${id}`)
+}
 function play() {
-    usePlay.dataOld.currentTimeSave = 0
-    usePlay.song = props.data;
-    usePlay.playAudio()
+    usePlay.prePlay(props.data)
     navigateTo(`/music/${props.data._id}`)
 }
 const { t } = useI18n()

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="space-y-10">
-            <HomeVSlide :listDefault="dataNews" />
+            <HomeVSlide :listDefault="useNews.list" />
             <HomeVNew />
             <HomeVSinger />
             <HomeVGenre />
@@ -48,6 +48,16 @@ const dataNews = [
     },
 
 ]
+
+const useNews = newsStore()
+
+const getApi = async () => {
+    await useNews.search('', 1, myConstant.PAGINATION.minLimit);
+}
+
+onMounted(() => {
+    getApi()
+})
 
 </script>
 

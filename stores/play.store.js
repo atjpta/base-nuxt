@@ -50,6 +50,7 @@ export const playStore = defineStore("playStore", {
                 this.random = data.random
                 this.dataOld = data;
                 this.play = !data.play
+                this.isBgImage = data.isBgImage
             }
         },
 
@@ -66,7 +67,8 @@ export const playStore = defineStore("playStore", {
                 indexCurrent: this.indexCurrent,
                 loop: this.loop,
                 random: this.random,
-                play: this.play
+                play: this.play,
+                isBgImage: this.isBgImage
             }));
 
         },
@@ -162,7 +164,8 @@ export const playStore = defineStore("playStore", {
                 else {
                     this.indexCurrent += 1;
                 }
-                this.song = this.list[this.indexCurrent];
+                const song = this.list[this.indexCurrent];
+                this.prePlay(song)
             }
             if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
                 this.router.push(`/music/${this.song._id}`)
@@ -179,7 +182,8 @@ export const playStore = defineStore("playStore", {
                 else {
                     this.indexCurrent -= 1;
                 }
-                this.song = this.list[this.indexCurrent];
+                const song = this.list[this.indexCurrent];
+                this.prePlay(song)
             }
             if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
                 this.router.push(`/music/${this.song._id}`)
@@ -207,9 +211,16 @@ export const playStore = defineStore("playStore", {
                 if (randomIndex != this.indexCurrent)
                     break;
             }
-            this.song = this.list[randomIndex];
+            const song = this.list[randomIndex];
+            this.prePlay(song)
             this.indexCurrent = randomIndex
         },
+
+        prePlay(song) {
+            this.dataOld.currentTimeSave = 0
+            this.song = song;
+            this.playAudio()
+        }
 
 
     }

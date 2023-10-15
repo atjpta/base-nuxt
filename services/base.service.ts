@@ -14,7 +14,7 @@ interface IBaseResponseHttp {
 }
 
 class BaseService {
-  private static baseUrl: string = `${config.public.apiBase}/api/v1`;
+  public static baseUrl: string = `${config.public.apiBase}/api/v1`;
   private static token: string = '';
   private static refreshToken: string = '';
 

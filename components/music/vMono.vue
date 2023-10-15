@@ -56,9 +56,7 @@ const props = defineProps({
 const usePlay = playStore()
 
 function play() {
-    usePlay.song = props.data;
-    usePlay.play = true;
-    // usePlay.playAudioFirst(props.data);
+    usePlay.prePlay(props.data)
 
 }
 const { t } = useI18n()
