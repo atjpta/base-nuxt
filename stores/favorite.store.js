@@ -43,6 +43,9 @@ export const favoriteStore = defineStore("favoriteStore", {
 
             const records = await baseService.post(`${this.urlBase}`, data)
             return records[0]
-        }
+        },
+        clear() {
+            this.model = {};
+        },
     },
 });

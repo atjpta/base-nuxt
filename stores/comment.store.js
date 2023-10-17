@@ -21,6 +21,14 @@ export const commentStore = defineStore("commentStore", {
             return records[0]
         },
 
+        async findBy(id) {
+            const records = await baseService.get(`${this.urlBase}/model/${id}`)
+            return records.map((e) => {
+                e.createdAt = myMixin.setTime(e.createdAt);
+                return e;
+            });
+        },
+
         async update(id, data) {
             const records = await baseService.put(`${this.urlBase}/${id}`, data)
             this.model = records[0]

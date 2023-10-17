@@ -55,10 +55,10 @@
                                     {{ lengthHeart }}
                                 </div>
 
-                                <div
+                                <div onclick="my_modal_comment.showModal()"
                                     class="xl:text-2xl btn xl:btn-md btn-sm btn-ghost shadow-md bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30">
                                     <font-awesome-icon :icon="['fas', 'comments']" />
-                                    1
+                                    {{ data.count_comments || 0 }}
                                 </div>
 
                                 <div
@@ -76,6 +76,25 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <dialog id="my_modal_comment" class="modal">
+
+                    <div class="modal-box max-w-fit p-10 overflow-hidden">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+
+                        <CommentVComment :data="data" />
+                    </div>
+
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
         </div>
     </div>

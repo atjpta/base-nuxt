@@ -1,10 +1,16 @@
 import dayjs from 'dayjs';
 import vi from 'dayjs/locale/vi';
+import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.locale(vi);
 class myMixin {
   public static getDate = (time: string) => {
     return dayjs(time).format('DD/MM/YYYY');
   };
+
+  public static setTime(time: string) {
+    dayjs.extend(relativeTime);
+    return dayjs(time).fromNow();
+  }
 
   public static countTimesDuplicateInString = (str: string, char: string) => {
     const regex = new RegExp(char, 'g');
