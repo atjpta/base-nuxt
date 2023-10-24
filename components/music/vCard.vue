@@ -21,7 +21,7 @@
                                     <div class="tooltip w-5" :data-tip="t('singer')">
                                         <font-awesome-icon :icon="['fas', 'microphone-lines']" />
                                     </div>
-                                    <div @click="navigateTo(`/singer/${i._id}`)"
+                                    <div @click="navigateTo(`/explorer/singer/${i._id}`)"
                                         class="btn m-1 btn-sm btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                                         v-for="i in data?.singer" :key="i._id">
                                         {{ i.name }}
@@ -31,7 +31,7 @@
                                     <div class="tooltip w-5" :data-tip="t('genre')">
                                         <font-awesome-icon :icon="['fas', 'table-list']" />
                                     </div>
-                                    <div @click="navigateTo(`/genre/${i._id}`)"
+                                    <div @click="navigateTo(`/explorer/genre/${i._id}`)"
                                         class="m-1 btn btn-sm btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                                         v-for="i in data?.genre" :key="i._id">
                                         {{ i.name }}
@@ -41,7 +41,7 @@
                                     <div class="tooltip w-5" :data-tip="t('country')">
                                         <font-awesome-icon :icon="['fas', 'globe']" />
                                     </div>
-                                    <div @click="navigateTo(`/country/${i._id}`)"
+                                    <div @click="navigateTo(`/explorer/country/${i._id}`)"
                                         class="m-1 btn btn-sm btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                                         v-for="i in data?.country" :key="i._id">
                                         {{ i.name }}
@@ -61,7 +61,7 @@
                                     {{ data.count_comments || 0 }}
                                 </div>
 
-                                <div
+                                <div onclick="my_modal_playlist.showModal()"
                                     class="xl:text-2xl btn xl:btn-md btn-sm btn-ghost shadow-md bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30">
                                     <font-awesome-icon :icon="['fas', 'plus']" />
                                     <font-awesome-icon :icon="['fas', 'icons']" />
@@ -83,12 +83,34 @@
             <div>
                 <dialog id="my_modal_comment" class="modal">
 
-                    <div class="modal-box max-w-fit p-10 overflow-hidden">
+                    <div
+                        class="modal-box max-w-fit p-10 overflow-hidden glass bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 bg-base-100">
                         <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         </form>
 
                         <CommentVComment :data="data" />
+                    </div>
+
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <dialog id="my_modal_playlist" class="modal">
+
+                    <div
+                        class="modal-box max-w-fit p-10 overflow-hidden glass bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 bg-base-100">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+
+                        <PlaylistVList />
                     </div>
 
                     <form method="dialog" class="modal-backdrop">
@@ -111,6 +133,7 @@ const usePlay = playStore()
 const useMusic = musicStore()
 const useFavorite = favoriteStore()
 const useAuth = authStore()
+const useComment = commentStore()
 const isHeart = useState(`isHeart`)
 const lengthHeart = ref(0)
 const route = useRoute()
@@ -136,6 +159,8 @@ const getApi = async () => {
             if (useAuth.user._id) {
                 getHeart()
             }
+            useComment.list = await useComment.findBy(route.params.id);
+
         }
     }
     catch (error) {
@@ -159,6 +184,10 @@ const getHeart = async () => {
 
 onMounted(() => {
     getApi()
+})
+
+onUnmounted(() => {
+    useComment.list = []
 })
 
 

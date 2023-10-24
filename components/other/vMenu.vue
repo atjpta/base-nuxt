@@ -8,7 +8,7 @@
                         <font-awesome-icon :icon="['fas', i.icon]" />
                         {{ t(i.title) }}
                     </summary>
-                    <OtherVMenu :turnOffDrawer="props.turnOffDrawer" :menu="i.list" />
+                    <OtherVMenu :is-open="isOpen" :turnOffDrawer="props.turnOffDrawer" :menu="i.list" />
                 </details>
                 <NuxtLink v-else @click="props.turnOffDrawer()" :to="i.url">
                     <font-awesome-icon :icon="['fas', i.icon]" />
@@ -26,15 +26,24 @@ const props = defineProps<{
     menu: any[]; // is IMenu
     index?: number;
     turnOffDrawer: Function
+    isOpen?: Boolean
 
 }>();
 const { t } = useI18n()
 const route = useRoute()
 const countRoute = computed(() => {
+    console.log(props.isOpen);
+
+    if (props.isOpen) {
+        return 99
+    }
     return myMixin.countTimesDuplicateInString(route.path, '/')
 })
 
 const isInRoute = (level: number, title: string) => {
+    if (props.isOpen) {
+        return true
+    }
     return myMixin.getValueMid(route.path, level) == title
 }
 

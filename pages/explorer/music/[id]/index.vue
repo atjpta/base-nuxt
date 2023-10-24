@@ -2,7 +2,7 @@
     <div>
         <div>
             <MusicVCard :data="usePlay.song" />
-            <MusicVList :data="listData" />
+            <MusicVListRandom :data="listData" />
         </div>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-    <div
-        class=" w-[calc(100vw-328px)] min-w-full lg:w-full overflow-auto  bg-gradient-to-r from-green-400/10 via-cyan-400/10 to-blue-400/10 rounded-2xl p-5">
+    <div :class="isUser ? 'w-full' : 'w-[calc(100vw-328px)]'"
+        class=" min-w-full lg:w-full overflow-auto  bg-gradient-to-r from-green-400/10 via-cyan-400/10 to-blue-400/10 rounded-2xl p-5">
         <div class="">
             <table class="table w-full ">
                 <thead>
@@ -31,6 +31,7 @@ const props = defineProps<{
     cpn: Component;
     listTitle: string[];
     refreshCb: any; // function
+    isUser: Boolean
 }>();
 
 </script>

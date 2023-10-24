@@ -2,7 +2,7 @@
     <div class="">
         <MusicVEdit :data="ModalEdit" @save="create" :loading="isLoadingCreate" />
         <div class="flex justify-between my-3">
-            <OtherVSearch id="search-user" @search="search" />
+            <OtherVSearch id="search-music-admin" @search="search" />
 
             <div @click="ModalEdit.openModal()" class="btn bg-teal-300  btn-sm">
                 <font-awesome-icon :icon="['fas', 'circle-plus']" />

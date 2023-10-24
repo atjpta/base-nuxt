@@ -167,8 +167,8 @@ export const playStore = defineStore("playStore", {
                 const song = this.list[this.indexCurrent];
                 this.prePlay(song)
             }
-            if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
-                this.router.push(`/music/${this.song._id}`)
+            if (route.path.slice(0, 15) == '/explorer/music' && route.path.length > 7) {
+                this.router.push(`/explorer/music/${this.song._id}`)
             }
         },
 
@@ -185,8 +185,8 @@ export const playStore = defineStore("playStore", {
                 const song = this.list[this.indexCurrent];
                 this.prePlay(song)
             }
-            if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
-                this.router.push(`/music/${this.song._id}`)
+            if (route.path.slice(0, 15) == '/explorer/music' && route.path.length > 7) {
+                this.router.push(`/explorer/music/${this.song._id}`)
             }
         },
 
@@ -198,8 +198,8 @@ export const playStore = defineStore("playStore", {
                 this.next()
             }
 
-            if (route.path.slice(0, 6) == '/music' && route.path.length > 7) {
-                this.router.push(`/music/${this.song._id}`)
+            if (route.path.slice(0, 15) == '/explorer/music' && route.path.length > 7) {
+                this.router.push(`/explorer/music/${this.song._id}`)
             }
 
         },

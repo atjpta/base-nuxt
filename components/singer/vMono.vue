@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div
+        <div @click="navigateTo(`/explorer/singer/${data._id}`)"
             class="glass rounded-2xl cursor-pointer flex space-x-5 w-fit  h-80 p-4 bg-gradient-to-r hover:bg-gradient-to-l from-green-500/30 via-cyan-500/0 to-blue-500/30 ">
             <div>
                 <div class="w-60 h-60 overflow-hidden rounded-full ">

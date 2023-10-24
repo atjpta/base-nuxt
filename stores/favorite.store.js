@@ -25,7 +25,8 @@ export const favoriteStore = defineStore("favoriteStore", {
         async findModelByUSer(modelType) {
 
             const records = await baseService.get(`${this.urlBase}/modelType/${modelType}`)
-            return records[0]
+            this.list = records.map(e => e.model)
+            return records
         },
 
         async findModelLength(model_id) {

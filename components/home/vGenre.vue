@@ -8,7 +8,8 @@
                     <div v-for="(i, ) in data" :key="i._id">
                         <GenreVMono class="carousel-item" :data="i" />
                     </div>
-                    <OtherVMore class="carousel-item" />
+                    <OtherVMore @click="navigateTo('/explorer/genre')" class="carousel-item cursor-pointer" />
+
                 </div>
             </div>
         </div>

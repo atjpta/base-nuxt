@@ -35,13 +35,7 @@ const loading = ref(false);
 const { t } = useI18n()
 const useNotification = notificationStore()
 const route = useRoute()
-const getApi = async () => {
-    try {
-        useComment.list = await useComment.findBy(route.params.id);
-    } catch (error) {
 
-    }
-}
 
 const send = async () => {
     if (!useAuth.user) {
@@ -68,9 +62,6 @@ const send = async () => {
     }
 }
 
-onMounted(() => {
-    getApi();
-});
 </script>
 
 <style></style>

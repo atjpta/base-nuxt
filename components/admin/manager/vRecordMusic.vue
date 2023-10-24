@@ -17,7 +17,7 @@
                             <div class="tooltip w-5" :data-tip="t('singer')">
                                 <font-awesome-icon :icon="['fas', 'microphone-lines']" />
                             </div>
-                            <div @click="navigateTo(`/singer/${i._id}`)"
+                            <div @click="navigateTo(`/explorer/singer/${i._id}`)"
                                 class="btn btn-xs btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                                 v-for="i in data.singer" :key="i._id">
                                 {{ i.name }}
@@ -27,7 +27,7 @@
                             <div class="tooltip w-5" :data-tip="t('genre')">
                                 <font-awesome-icon :icon="['fas', 'table-list']" />
                             </div>
-                            <div @click="navigateTo(`/genre/${i._id}`)"
+                            <div @click="navigateTo(`/explorer/genre/${i._id}`)"
                                 class="btn btn-xs btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                                 v-for="i in data.genre" :key="i._id">
                                 {{ i.name }}
@@ -37,7 +37,7 @@
                             <div class="tooltip w-5" :data-tip="t('country')">
                                 <font-awesome-icon :icon="['fas', 'globe']" />
                             </div>
-                            <div @click="navigateTo(`/country/${i._id}`)"
+                            <div @click="navigateTo(`/explorer/country/${i._id}`)"
                                 class="btn btn-xs btn-ghost bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30"
                                 v-for="i in data.country" :key="i._id">
                                 {{ i.name }}

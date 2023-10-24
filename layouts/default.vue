@@ -2,11 +2,11 @@
     <div class=" overflow-auto h-screen">
         <div class="bg-gradient-to-r from-green-400/5 via-cyan-400/5 to-blue-400/5 min-h-screen">
             <!-- bg -->
-            <div class="toast toast-center toast-middle h-screen w-screen blur bg-cover " :style="image">
+            <div class="toast toast-center toast-middle h-screen w-screen blur-lg bg-cover " :style="image">
             </div>
             <NotificationVManager />
             <div class="drawer">
-                <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+                <input ref="btnTurnOff" id="my-drawer-3" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content flex flex-col">
                     <!-- Navbar -->
                     <LayoutVHeader class="" />
@@ -17,9 +17,10 @@
                 </div>
                 <div class="drawer-side z-40">
                     <label for="my-drawer-3" class="drawer-overlay"></label>
-                    <ul class="menu p-4 w-72 h-full bg-base-100">
+                    <ul
+                        class="menu p-4 w-72 h-full bg-base-100 bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20">
                         <!-- Sidebar content here -->
-                        <LayoutVSidebar />
+                        <LayoutVSidebar :turnOffDrawer="turnOffDrawer" />
                     </ul>
                 </div>
             </div>
@@ -47,6 +48,13 @@ const image = computed(() => {
         return `background-image: url(${usePlay.song.url_image || usePlay.image})`;
     } else return "";
 });
+
+const btnTurnOff = ref()
+
+const turnOffDrawer = () => {
+    btnTurnOff.value.click()
+
+}
 
 onMounted(() => {
     loadAuth();

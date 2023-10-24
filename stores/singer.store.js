@@ -27,6 +27,12 @@ export const singerStore = defineStore("singerStore", {
             return records[0]
         },
 
+        async findOne(id) {
+            const records = await baseService.get(`${this.urlBase}/${id}`)
+            this.model = records[0]
+            return records[0]
+        },
+
         async deleteOne(id) {
             const records = await baseService.delete(`${this.urlBase}/${id}`)
             return records[0]

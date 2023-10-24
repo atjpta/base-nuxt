@@ -6,7 +6,7 @@ export const musicStore = defineStore("musicStore", {
     state() {
         return {
             model: {},
-            list: null,
+            list: [],
             urlBase: '/musics',
         };
     },
@@ -24,6 +24,12 @@ export const musicStore = defineStore("musicStore", {
             const records = await baseService.get(`${this.urlBase}/random/${id}?size=${size}`)
             this.list = records
             return records
+        },
+
+        async getByModel(type, id, page, limit) {
+            const records = await baseService.get(`${this.urlBase}/model/${type}/${id}?page=${page}&limit=${limit}`)
+            this.list = records[0].list
+            return records[0]
         },
 
         async update(id, data) {

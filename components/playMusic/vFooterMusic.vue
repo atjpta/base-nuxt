@@ -40,7 +40,8 @@
                         </div>
                     </div>
                     <div v-else class="flex justify-between items-center">
-                        <div @click="navigateTo(`/music/${usePlay.song._id}`)" class="flex space-x-3 cursor-pointer">
+                        <div @click="navigateTo(`/explorer/music/${usePlay.song._id}`)"
+                            class="flex space-x-3 cursor-pointer">
                             <!-- thông tin bài hát -->
                             <div>
                                 <img :class="usePlay.play ? 'animate-spin-slow' : ''" class="h-14 w-14 rounded-full"
@@ -190,9 +191,10 @@ const getHeart = async () => {
 
 }
 
-watch(song, () => {
+watchSyncEffect(() => {
     getHeart()
 })
+
 
 onMounted(() => {
 

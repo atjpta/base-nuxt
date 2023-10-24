@@ -1,43 +1,40 @@
 <template>
     <div class="">
-        <SkeletonVTable v-if="isLoading" />
-        <div v-if="useMusic.list[0]">
-            <OtherVTable :is-user="true" class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
-                :list-data="[...listData]" :cpn="monoMusic" />
-
-            <div class="m-5 text-center">
-                <OtherVPagination @getMore="getMore" :total="total" />
-            </div>
+        <OtherVTitle class="my-10 text-center" title="List singer" />
+        <div class="flex justify-between my-3">
+            <OtherVSearch id="search-music" @search="search" />
         </div>
-        <div v-else class="text-2xl m-10 text-center">
-            {{ t('List empty!!') }}
+        <SkeletonVTable v-if="isLoading" />
+
+        <OtherVList class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
+            :list-data="[...listData]" :cpn="mono" />
+
+        <div class="m-5 text-center">
+            <OtherVPagination @getMore="getMore" :total="total" />
         </div>
 
     </div>
 </template>
 
 <script setup>
+import mono from '~~/components/singer/vMono';
 
-import monoMusic from '~/components/music/vRecordMusic'
-
-const props = defineProps({
-    type: String
-})
 const { t } = useI18n()
-const useMusic = musicStore()
+const useSinger = singerStore()
 const listTitle = ref([])
 const listData = ref([])
 const total = ref(0)
 const indexPage = ref(1)
 const indexPageLimit = ref(1)
 const isLoading = ref(false)
-const route = useRoute()
+const key = ref('')
+
 const getMore = async (page, limit) => {
     try {
         isLoading.value = true
         indexPage.value = page;
         indexPageLimit.value = limit
-        const result = await useMusic.getByModel(props.type, route.params.id, page, limit);
+        const result = await useSinger.search(key.value, page, limit);
         listData.value = result?.list;
         total.value = result?.total;
     } catch (error) {
@@ -52,6 +49,10 @@ const refreshData = async () => {
     await getMore(indexPage.value, indexPageLimit.value)
 }
 
+const search = async (data) => {
+    key.value = data
+    await getMore(1, myConstant.PAGINATION.minLimit)
+}
 
 const getApi = async () => {
     try {
@@ -62,7 +63,7 @@ const getApi = async () => {
     }
 }
 
-watchSyncEffect(() => {
+onMounted(() => {
     getApi();
 })
 </script>

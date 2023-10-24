@@ -19,11 +19,11 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <!-- <div>
                     <div class="btn-sm btn btn-ghost btn-circle">
                         <font-awesome-icon :icon="['fas', 'ellipsis']" />
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -40,11 +40,11 @@ const usePlay = playStore()
 
 const goToSinger = (e, id) => {
     e.stopPropagation()
-    navigateTo(`/singer/${id}`)
+    navigateTo(`/explorer/singer/${id}`)
 }
 function play() {
     usePlay.prePlay(props.data)
-    navigateTo(`/music/${props.data._id}`)
+    navigateTo(`/explorer/music/${props.data._id}`)
 }
 const { t } = useI18n()
 </script>

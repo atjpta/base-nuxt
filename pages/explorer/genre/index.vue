@@ -1,21 +1,15 @@
 <template>
     <div class="">
-        <SingerVEdit :data="ModalEdit" @save="create" :loading="isLoadingCreate" />
+        <OtherVTitle class="my-10 text-center" title="List genre" />
         <div class="flex justify-between my-3">
-            <OtherVSearch id="search-genre-admin" @search="search" />
-
-            <div @click="ModalEdit.openModal()" class="btn bg-teal-300  btn-sm">
-                <font-awesome-icon :icon="['fas', 'circle-plus']" />
-                {{ t('Add') }}
-            </div>
-
+            <OtherVSearch id="search-music" @search="search" />
         </div>
         <SkeletonVTable v-if="isLoading" />
 
-        <OtherVTable class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
-            :list-data="[...listData]" :cpn="AdminManagerVRecordGenre" />
+        <OtherVList class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
+            :list-data="[...listData]" :cpn="mono" />
 
-        <div class="toast lg:right-[calc(50%-144px)] right-1/2 translate-x-1/2">
+        <div class="m-5 text-center">
             <OtherVPagination @getMore="getMore" :total="total" />
         </div>
 
@@ -23,7 +17,7 @@
 </template>
 
 <script setup>
-import AdminManagerVRecordGenre from '~~/components/admin/manager/vRecordGenre';
+import mono from '~~/components/genre/vMono';
 
 const { t } = useI18n()
 const useGenre = genreStore()
@@ -34,28 +28,6 @@ const indexPage = ref(1)
 const indexPageLimit = ref(1)
 const isLoading = ref(false)
 const key = ref('')
-const isLoadingCreate = ref(false)
-const useNotification = notificationStore()
-
-const ModalEdit = ref({
-    openModal: null,
-    name: null,
-    avatar: null
-})
-
-const create = async (data, close) => {
-    try {
-        isLoadingCreate.value = true
-        await useGenre.create(data)
-        await refreshData()
-        useNotification.show('success', t(`Create success!!`))
-        close()
-    } catch (error) {
-        useNotification.show('error', t(`Can't create!!`))
-    } finally {
-        isLoadingCreate.value = false
-    }
-}
 
 const getMore = async (page, limit) => {
     try {
@@ -86,6 +58,7 @@ const getApi = async () => {
     try {
         await getMore(1, myConstant.PAGINATION.minLimit)
     } catch (error) {
+        console.log(error);
         navigateTo('/error/500')
     }
 }
