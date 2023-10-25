@@ -47,6 +47,15 @@
                                         {{ i.name }}
                                     </div>
                                 </div>
+
+                                <div class="flex space-x-2 items-center">
+                                    <div class="tooltip w-5" :data-tip="t('view')">
+                                        <font-awesome-icon :icon="['fas', 'headphones']" />
+                                    </div>
+                                    <div>
+                                        {{ data.view }}
+                                    </div>
+                                </div>
                             </div>
                             <div class="mt-5 md:mt-0 flex justify-around">
                                 <div @click="heart" :class="isHeart ? 'text-red-500' : ''"
