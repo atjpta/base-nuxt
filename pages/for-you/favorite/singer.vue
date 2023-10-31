@@ -20,7 +20,7 @@ const getApi = async () => {
     await useFavorite.findModelByUSer('singers')
 }
 
-onMounted(() => {
+watchSyncEffect(() => {
     getApi()
 })
 </script>

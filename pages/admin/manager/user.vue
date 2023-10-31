@@ -12,8 +12,8 @@
         </div>
         <SkeletonVTable v-if="isLoading" />
 
-        <OtherVTable class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle" :list-data="listData"
-            :cpn="AdminManagerVRecordUser" />
+        <OtherVTable :is-user="false" class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
+            :list-data="listData" :cpn="AdminManagerVRecordUser" />
 
         <div class="toast lg:right-[calc(50%-144px)] right-1/2 translate-x-1/2">
             <OtherVPagination @getMore="getMore" :total="total" />

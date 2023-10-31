@@ -18,7 +18,7 @@ const getApi = async () => {
     await useFavorite.findModelByUSer('musics')
 }
 
-onMounted(() => {
+watchSyncEffect(() => {
     getApi()
 })
 </script>

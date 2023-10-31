@@ -6,7 +6,7 @@
         </div>
         <SkeletonVTable v-if="isLoading" />
 
-        <OtherVTable class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
+        <OtherVTable :is-user="false" class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
             :list-data="[...listData]" :cpn="monoMusic" />
 
         <div class="m-5 text-center">
