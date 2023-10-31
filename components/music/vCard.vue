@@ -173,7 +173,7 @@ const getApi = async () => {
         }
     }
     catch (error) {
-        lengthHeart.value = 0
+        // lengthHeart.value = 0
     }
 }
 

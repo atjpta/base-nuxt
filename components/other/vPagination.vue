@@ -7,7 +7,7 @@
                 <button :disabled="isLoading2" class="join-item btn" onclick="modelPagination.showModal()">
                     {{ t('Page') }} {{ indexPage }}
                 </button>
-                <button :class="isLoading3 ? 'loading' : ''" :disabled="indexPage == maxPage" @click="next"
+                <button :class="isLoading3 ? 'loading' : ''" :disabled="maxPage == 0 || indexPage == maxPage" @click="next"
                     class="join-item btn">»</button>
             </div>
         </div>

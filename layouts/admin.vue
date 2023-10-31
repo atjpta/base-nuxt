@@ -1,5 +1,5 @@
 <template>
-    <div class=" overflow-auto h-screen">
+    <div class=" overflow-scroll h-screen ">
         <div class="bg-gradient-to-r from-green-400/5 via-cyan-400/5 to-blue-400/5 min-h-screen ">
             <NotificationVManager />
             <div class="drawer lg:drawer-open">
@@ -8,7 +8,7 @@
                 <div class="drawer-content flex flex-col">
                     <!-- Navbar -->
                     <LayoutVHeaderAdmin class="" />
-                    <div class="container sm:mx-auto sm:px-5 duration-500">
+                    <div class="container sm:mx-auto sm:px-5 duration-500 ">
                         <slot />
                     </div>
                 </div>
