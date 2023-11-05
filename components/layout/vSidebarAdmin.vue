@@ -42,6 +42,35 @@ const list = ref([
         list: [],
     },
     {
+        icon: `flag`,
+        title: 'report',
+        url: '/admin/manager/report',
+        level: 3,
+        list: [
+            {
+                icon: `comments`,
+                title: 'comment',
+                url: '/admin/manager/report/comment',
+                level: 4,
+                list: [],
+            },
+            {
+                icon: `warning`,
+                title: 'List warning',
+                url: '/admin/manager/report/list-warning',
+                level: 4,
+                list: [],
+            },
+            {
+                icon: `ban`,
+                title: 'List banned',
+                url: '/admin/manager/report/list-banned',
+                level: 4,
+                list: [],
+            },
+        ],
+    },
+    {
         icon: `music`,
         title: 'song',
         url: '/admin/manager/music',
@@ -132,23 +161,6 @@ const list = ref([
 
 
 ])
-
-const route = useRoute()
-
-
-const test = () => {
-    console.log('test');
-
-}
-
-const countRoute = computed(() => {
-
-    const count = myMixin.countTimesDuplicateInString(route.path, '/')
-    const title = myMixin.getValueMidEnd(route.path);
-    return {
-        count, title
-    }
-})
 
 </script>
 

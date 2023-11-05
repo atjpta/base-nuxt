@@ -67,7 +67,7 @@
                                 <div onclick="my_modal_comment.showModal()"
                                     class="xl:text-2xl btn xl:btn-md btn-sm btn-ghost shadow-md bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30">
                                     <font-awesome-icon :icon="['fas', 'comments']" />
-                                    {{ data.count_comments || 0 }}
+                                    <!-- {{ data.count_comments || 0 }} -->
                                 </div>
 
                                 <div onclick="my_modal_playlist.showModal()"

@@ -12,6 +12,16 @@ class myMixin {
     return dayjs(time).fromNow();
   }
 
+  public static getDayFromNow(day: string) {
+    const now = new Date();
+    const date = new Date(day);
+
+    if (date < now) {
+      return '-';
+    }
+    return dayjs(day).fromNow();
+  }
+
   public static countTimesDuplicateInString = (str: string, char: string) => {
     const regex = new RegExp(char, 'g');
     const matches = str.match(regex);

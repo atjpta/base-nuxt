@@ -2,7 +2,7 @@
     <div>
         <ul class="" :class="props.index == 0 ? 'menu rounded-lg max-w-xs w-full' : 'my-2'">
             <li class="" v-for="(i) in props.menu" :key="i">
-                <details v-if="i.list.length > 0" :open="countRoute > i.level && isInRoute(i.level, t(i.title))">
+                <details v-if="i.list.length > 0" :open="countRoute > i.level && isInRoute(i.level, i.title)">
                     <summary class=""
                         :class="route.path.includes(i.url) ? 'bg-gradient-to-r from-green-400/50 via-cyan-400/50 to-blue-400/50' : ''">
                         <font-awesome-icon :icon="['fas', i.icon]" />
@@ -32,8 +32,6 @@ const props = defineProps<{
 const { t } = useI18n()
 const route = useRoute()
 const countRoute = computed(() => {
-    console.log(props.isOpen);
-
     if (props.isOpen) {
         return 99
     }
@@ -45,10 +43,6 @@ const isInRoute = (level: number, title: string) => {
         return true
     }
     return myMixin.getValueMid(route.path, level) == title
-}
-
-const test = (e: any) => {
-    e.stopPropagation()
 }
 
 interface IMenu {

@@ -5,7 +5,7 @@ export const reportStore = defineStore("reportStore", {
     id: 'report',
     state() {
         return {
-            model: {},
+            model: [],
             list: [],
             urlBase: '/reports',
 
@@ -28,13 +28,24 @@ export const reportStore = defineStore("reportStore", {
         },
 
         async findOne(id) {
-            const records = await baseService.get(`${this.urlBase}/${id}`)
-            this.model = records[0]
-            return records[0]
+            this.model = []
+            const records = await baseService.get(`${this.urlBase}/author/${id}`)
+            this.model = records
+            return records
         },
 
         async deleteOne(id) {
             const records = await baseService.delete(`${this.urlBase}/${id}`)
+            return records[0]
+        },
+
+        async deleteByAuthor(id) {
+            const records = await baseService.delete(`${this.urlBase}/author/${id}`)
+            return records[0]
+        },
+
+        async deleteByComment(id) {
+            const records = await baseService.delete(`${this.urlBase}/comment/${id}`)
             return records[0]
         },
 
