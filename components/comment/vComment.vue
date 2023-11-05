@@ -53,12 +53,16 @@ const send = async () => {
             });
             useComment.list = await useComment.findBy(route.params.id);
             useNotification.show('success', t(`Send success!!`))
-            loading.value = false;
             props.data.content = "";
         }
         return;
     } catch (error) {
-
+        if (error.message = BaseHttpStatus.NOT_ACCEPT) {
+            useNotification.show('error', t(`You are banned from commenting!!`))
+        }
+    }
+    finally {
+        loading.value = false;
     }
 }
 

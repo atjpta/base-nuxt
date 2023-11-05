@@ -15,7 +15,7 @@ const useAuth = authStore();
 const itMe = computed(() => {
     return useUser.model._id == useAuth.user._id;
 });
-
+const useStatusComment = statusCommentStore()
 const route = useRoute();
 const { t } = useI18n();
 const tabs = computed(() => {
@@ -51,6 +51,8 @@ const getApi = async () => {
     } catch (error) {
         navigateTo("/error/404");
     }
+    await useStatusComment.findByUser(route.params.id);
+
 };
 
 onMounted(async () => {

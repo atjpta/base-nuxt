@@ -117,7 +117,12 @@ async function send() {
         }
         return;
     } catch (error) {
-        console.log(error);
+        if (error.message = BaseHttpStatus.NOT_ACCEPT) {
+            useNotification.show('error', t(`You are banned from commenting!!`))
+        }
+    }
+    finally {
+        loading.value = false;
     }
 }
 

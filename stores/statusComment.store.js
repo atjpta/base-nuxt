@@ -27,6 +27,12 @@ export const statusCommentStore = defineStore("statusCommentStore", {
             return records[0]
         },
 
+        async findByUser(id) {
+            const records = await baseService.get(`${this.urlBase}/user/${id}`)
+            this.model = records[0]
+            return records[0]
+        },
+
         async update(id, data) {
             const records = await baseService.put(`${this.urlBase}/${id}`, data)
             this.model = records[0]

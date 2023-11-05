@@ -175,6 +175,9 @@
     "list-banned": "danh sách cấm",
     "List warning": "danh sách cảnh báo",
     "list-warning": "danh sách cảnh báo",
+    "banned comment": "cấm bình luận",
+    "warning comment": "bị cảnh báo",
+    "You are banned from commenting!!": "Bạn đang bị cấm bình luận!!",
     "Are you sure you want to remove warning this user?": "Bạn có chắc chắn muốn bỏ cảnh báo người dùng này?",
     "Are you sure you want to remove ban this user?": "Bạn có chắc chắn muốn bỏ cấm người dùng này?"
 }

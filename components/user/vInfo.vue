@@ -15,6 +15,9 @@
                     <div class="">
                         {{ `${t("Join date")}: ${time}` }}
                     </div>
+                    <div>
+                        {{ `${t('Status')}: ${status}` }}
+                    </div>
                     <div class="">
                         {{ `${t("Introduce")}: ...` }}
                     </div>
@@ -29,10 +32,23 @@ const { t } = useI18n();
 const props = defineProps({
     user: Object,
 });
+const useStatusComment = statusCommentStore()
 const useUser = userStore();
 const time = computed(() => {
     return myMixin.getDate(props.user.createdAt);
 });
+
+const status = computed(() => {
+    if (useStatusComment.model) {
+        if (useStatusComment.model.isBanned) {
+            return t('banned comment')
+        }
+        if (useStatusComment.model.endTime > new Date().toISOString()) {
+            return t('warning comment') + ' - ' + myMixin.getDayFromNow(useStatusComment.model.endTime, true)
+        }
+    }
+    return t('Active')
+})
 
 const update = async (data) => {
     try {
