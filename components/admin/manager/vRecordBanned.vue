@@ -61,6 +61,8 @@ const useStatusComment = statusCommentStore()
 const emit = defineEmits(['refreshData'])
 const isLoading = ref(false)
 const { t } = useI18n()
+const useNotificationServer = notificationsServerStore()
+
 const modalConfirm = ref({ isLoading: false, closeModal: null, openModal: null, content: t('Are you sure you want to remove ban this user?'), title: t('Alert!!') })
 
 const edit = async () => {
@@ -68,6 +70,11 @@ const edit = async () => {
 
         isLoading.value = true
         await useStatusComment.update(props.data._id, { isBanned: false });
+        await useNotificationServer.create({
+            user: props.data.user._id,
+            content: `You use feature comment!!`,
+            type: "info"
+        })
         emit('refreshData')
         useNotification.show('success', t('Update success!!'))
         close()

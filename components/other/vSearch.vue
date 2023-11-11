@@ -39,9 +39,7 @@ onMounted(() => {
     }
 })
 
-onUnmounted(() => {
-    clearInterval(timer)
-})
+
 </script>
 
 <style></style>

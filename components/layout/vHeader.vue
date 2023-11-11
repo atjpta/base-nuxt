@@ -33,9 +33,7 @@
                     </div>
 
                     <div v-if="useAuth.user._id" class="flex items-center sm:space-x-4 space-x-1">
-                        <div class="btn btn-ghost sm:btn-md btn-sm">
-                            <font-awesome-icon class="text-teal-400 text-2xl" :icon="['fas', 'bell']" />
-                        </div>
+                        <NotificationServerVList />
                         <LayoutVDropDownAvatar />
                     </div>
                     <div v-else>

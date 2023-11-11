@@ -58,11 +58,17 @@ const emit = defineEmits(['refreshData'])
 const isLoading = ref(false)
 const { t } = useI18n()
 const modalConfirm = ref({ isLoading: false, closeModal: null, openModal: null, content: t('Are you sure you want to remove warning this user?'), title: t('Alert!!') })
+const useNotificationServer = notificationsServerStore()
 
 const edit = async () => {
     try {
         isLoading.value = true
         await useStatusComment.update(props.data._id, { day: -99 });
+        await useNotificationServer.create({
+            user: props.data.user._id,
+            content: `You use feature comment!!`,
+            type: "info"
+        })
         emit('refreshData')
         useNotification.show('success', t('Update success!!'))
         close()

@@ -1,18 +1,9 @@
 <template>
     <div class="">
-        <SingerVEdit :data="ModalEdit" @save="create" :loading="isLoadingCreate" />
         <div class="flex justify-between my-3">
             <OtherVSearch id="search-country-admin" @search="search" />
-
-            <div @click="ModalEdit.openModal()" class="btn bg-teal-300  btn-sm">
-                <font-awesome-icon :icon="['fas', 'circle-plus']" />
-                {{ t('Add') }}
-            </div>
-
         </div>
         <SkeletonVTable v-if="isLoading" />
-
-
         <OtherVTable :is-user="false" class="" v-show="!isLoading" :refresh-cb="refreshData" :list-title="listTitle"
             :list-data="[...listData]" :cpn="AdminManagerVRecordReportComment" />
 
@@ -40,28 +31,6 @@ const indexPage = ref(1)
 const indexPageLimit = ref(1)
 const isLoading = ref(false)
 const key = ref('')
-const isLoadingCreate = ref(false)
-const useNotification = notificationStore()
-
-const ModalEdit = ref({
-    openModal: null,
-    name: null,
-    avatar: null
-})
-
-const create = async (data, close) => {
-    try {
-        isLoadingCreate.value = true
-        await useReport.create(data)
-        await refreshData()
-        useNotification.show('success', t(`Create success!!`))
-        close()
-    } catch (error) {
-        useNotification.show('error', t(`Can't create!!`))
-    } finally {
-        isLoadingCreate.value = false
-    }
-}
 
 const getMore = async (page, limit) => {
     try {

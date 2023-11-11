@@ -64,6 +64,7 @@ const useStatusComment = statusCommentStore()
 const emit = defineEmits(['refreshData'])
 const isLoading = ref(false)
 const { t } = useI18n()
+const useNotificationServer = notificationsServerStore()
 
 const ModalEdit = ref({
     openModal: null,
@@ -82,6 +83,20 @@ const edit = async (data, close) => {
         else {
             await useStatusComment.create({ ...data, user: props.data.author._id });
         }
+        if (data.isBanned) {
+            await useNotificationServer.create({
+                user: props.data.author._id,
+                content: `You banned comment forever!!`,
+                type: "error"
+            })
+        }
+        if (data.day > 0) {
+            await useNotificationServer.create({
+                user: props.data.author._id,
+                content: `You banned comment in ${data.day} day!!`,
+                type: "warning"
+            })
+        }
         emit('refreshData')
         useNotification.show('success', t('Update success!!'))
         close()
@@ -99,30 +114,6 @@ const edit = async (data, close) => {
     }
 }
 
-
-const deleteOne = async () => {
-    try {
-        modalConfirm.value.isLoading = true
-        await useStatusComment.deleteOne(props.data._id)
-        emit('refreshData')
-        modalConfirm.value.isLoading = false
-        modalConfirm.value.closeModal()
-        useNotification.show('success', t('Delete success!!'))
-    } catch (error) {
-        if (error.message == BaseHttpStatus.FORBIDDEN.code) {
-            useNotification.show('error', t(`You need higher permissions to delete!!`))
-        }
-        else if (error.message == BaseHttpStatus.NOT_ACCEPT.code) {
-            useNotification.show('error', t(`Can't delete ROOT!!`))
-        }
-        else {
-            useNotification.show('error', t(`Can't delete!!`))
-        }
-    }
-    finally {
-        modalConfirm.value.isLoading = false
-    }
-}
 
 </script>
 
