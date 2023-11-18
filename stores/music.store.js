@@ -48,5 +48,14 @@ export const musicStore = defineStore("musicStore", {
             return records[0]
         },
 
+        async getTotal() {
+            const records = await baseService.get(`${this.urlBase}/total`)
+            return records[0].total
+        },
+
+        async getTotalView() {
+            const records = await baseService.get(`${this.urlBase}/total-view`)
+            return records[0].total
+        }
     },
 });

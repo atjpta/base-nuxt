@@ -1,38 +1,42 @@
 <template>
-    <div class="indicator w-full">
-        <ReportVEdit :data="ModalEdit" @save="sendReport" :loading="isLoading" />
-        <!-- report -->
-        <div class="indicator-item top-[50%] right-10">
-            <div :class="[isCreate ? 'btn-disabled' : '']" @click="ModalEdit.openModal" class="btn btn-sm btn-ghost">
-                <font-awesome-icon :icon="['fas', 'flag']" />
-            </div>
+    <div class="w-full">
+        <div class=" w-full">
+            <div class="flex items-center">
+                <div class="flex w-full">
 
-        </div>
-        <div class=" w-full ">
-            <div class="flex w-full">
-
-                <!-- avatar -->
-                <div class="text-center text-xl">
-                    <div class="w-16 mx-auto">
-                        <img class="w-12 h-12 rounded-full mx-auto" :src="data.createdBy?.avatar" alt="" />
+                    <!-- avatar -->
+                    <div class="text-center text-xl">
+                        <div class="w-16 mx-auto">
+                            <img class="w-12 h-12 rounded-full mx-auto" :src="data.createdBy?.avatar" alt="" />
+                        </div>
+                        <div class="flex flex-col items-center w-16 mx-auto">
+                            <FavoriteVHeart :sl="data.favorite[0]?.count || 0" type="comments" :model="data._id" />
+                            <div @click="openComment = !openComment" class="btn btn-ghost btn-sm btn-circle">
+                                <font-awesome-icon class="text-xl" :icon="['fas', 'share']" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center w-16 mx-auto">
-                        <FavoriteVHeart :sl="data.favorite[0]?.count || 0" type="comments" :model="data._id" />
-                        <div @click="openComment = !openComment" class="btn btn-ghost btn-sm btn-circle">
-                            <font-awesome-icon class="text-xl" :icon="['fas', 'share']" />
+
+                    <!-- content and name createdBy + time -->
+                    <div class="ml-2">
+                        <div class="text-2xl font-medium">{{ data.createdBy?.fullName }}</div>
+                        <div class="text-xs mb-2">{{ data.createdAt }}</div>
+                        <div>
+                            {{ data.content }}
                         </div>
                     </div>
                 </div>
 
-                <!-- content and name createdBy + time -->
-                <div class="ml-2">
-                    <div class="text-2xl font-medium">{{ data.createdBy?.fullName }}</div>
-                    <div class="text-xs mb-2">{{ data.createdAt }}</div>
-                    <div>
-                        {{ data.content }}
+                <!-- report -->
+                <ReportVEdit :data="ModalEdit" @save="sendReport" :loading="isLoading" />
+                <div class="">
+                    <div :class="[isCreate ? 'btn-disabled' : '']" @click="ModalEdit.openModal"
+                        class="btn btn-sm btn-ghost">
+                        <font-awesome-icon :icon="['fas', 'flag']" />
                     </div>
                 </div>
             </div>
+
             <div class="text-xs">
                 <div v-if="!showChild && data.child[0]?.count > 0" @click="getChild()" class="btn btn-xs btn-ghost">
                     Xem {{ data.child[0]?.count }} phản hồi khác...
@@ -52,6 +56,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 

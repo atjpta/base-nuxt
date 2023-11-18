@@ -59,5 +59,10 @@ export const userStore = defineStore("userStore", {
             const records = await baseService.delete(`${this.urlBase}/${id}`)
             return records[0]
         },
+
+        async getTotal() {
+            const records = await baseService.get(`${this.urlBase}/total`)
+            return records[0].total
+        }
     },
 });

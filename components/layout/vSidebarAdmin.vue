@@ -105,61 +105,59 @@ const list = ref([
         level: 3,
         list: [],
     },
-    {
-        icon: `user`,
-        title: 'level1',
-        url: '/admin/manager/level1',
-        level: 3,
-        list: [
-            {
-                icon: `user`,
-                title: 'level1-1',
-                url: '/admin/manager/level1/level1-1',
-                level: 4,
-                list: [
-                    {
-                        icon: `user`,
-                        title: 'level1-1-1',
-                        url: '/admin/manager/level1/level1-1/level1-1-1',
-                        level: 5,
-                        list: [],
-                    }
-                ]
-            },
-            {
-                icon: `user`,
-                title: 'level1-2',
-                url: '/admin/manager/level1/level1-2',
-                level: 4,
-                list: [
-                    {
-                        icon: `user`,
-                        title: 'level1-2-1',
-                        url: '/admin/manager/level1/level1-2/level1-2-1',
-                        level: 5,
-                        list: [],
-                    },
-                    {
-                        icon: `user`,
-                        title: 'level1-2-2',
-                        url: '/admin/manager/level1/level1-2/level1-2-2',
-                        level: 5,
-                        list: [],
-                    }
-                ]
-            },
-            {
-                icon: `user`,
-                title: 'level1-3',
-                url: '/admin/manager/level1/level1-3',
-                level: 4,
-                list: [
-                ]
-            }
-        ],
-    },
-
-
+    // {
+    //     icon: `user`,
+    //     title: 'level1',
+    //     url: '/admin/manager/level1',
+    //     level: 3,
+    //     list: [
+    //         {
+    //             icon: `user`,
+    //             title: 'level1-1',
+    //             url: '/admin/manager/level1/level1-1',
+    //             level: 4,
+    //             list: [
+    //                 {
+    //                     icon: `user`,
+    //                     title: 'level1-1-1',
+    //                     url: '/admin/manager/level1/level1-1/level1-1-1',
+    //                     level: 5,
+    //                     list: [],
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             icon: `user`,
+    //             title: 'level1-2',
+    //             url: '/admin/manager/level1/level1-2',
+    //             level: 4,
+    //             list: [
+    //                 {
+    //                     icon: `user`,
+    //                     title: 'level1-2-1',
+    //                     url: '/admin/manager/level1/level1-2/level1-2-1',
+    //                     level: 5,
+    //                     list: [],
+    //                 },
+    //                 {
+    //                     icon: `user`,
+    //                     title: 'level1-2-2',
+    //                     url: '/admin/manager/level1/level1-2/level1-2-2',
+    //                     level: 5,
+    //                     list: [],
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             icon: `user`,
+    //             title: 'level1-3',
+    //             url: '/admin/manager/level1/level1-3',
+    //             level: 4,
+    //             list: [
+    //             ]
+    //         }
+    //     ],
+    // },
 ])
 
 </script>

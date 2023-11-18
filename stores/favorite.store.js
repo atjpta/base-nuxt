@@ -48,5 +48,10 @@ export const favoriteStore = defineStore("favoriteStore", {
         clear() {
             this.model = {};
         },
+
+        async getTotal() {
+            const records = await baseService.get(`${this.urlBase}/total`)
+            return records[0].total
+        }
     },
 });

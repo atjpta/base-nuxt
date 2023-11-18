@@ -43,5 +43,10 @@ export const genreStore = defineStore("genreStore", {
             return records[0]
         },
 
+        async getTotal() {
+            const records = await baseService.get(`${this.urlBase}/total`)
+            return records[0].total
+        }
+
     },
 });
