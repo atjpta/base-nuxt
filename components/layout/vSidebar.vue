@@ -104,27 +104,10 @@ const list = ref([
 
 ])
 
-const route = useRoute()
-
-
-const test = () => {
-    console.log('test');
-
-}
-
 const goHome = () => {
     navigateTo('/')
     props.turnOffDrawer()
 }
-
-const countRoute = computed(() => {
-
-    const count = myMixin.countTimesDuplicateInString(route.path, '/')
-    const title = myMixin.getValueMidEnd(route.path);
-    return {
-        count, title
-    }
-})
 
 </script>
 

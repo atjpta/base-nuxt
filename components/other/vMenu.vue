@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul class="" :class="props.index == 0 ? 'menu rounded-lg max-w-xs w-full' : 'my-2'">
+        <ul :class="props.index == 0 ? 'menu rounded-lg max-w-xs w-full' : 'my-2'">
             <li class="" v-for="(i) in props.menu" :key="i">
                 <details v-if="i.list.length > 0" :open="countRoute > i.level && isInRoute(i.level, i.title)">
                     <summary class=""
@@ -53,6 +53,6 @@ interface IMenu {
     level: number;
     list: IMenu[];
 }
-</script>
 
-<style></style>
+
+</script>

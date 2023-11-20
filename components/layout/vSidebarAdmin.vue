@@ -15,8 +15,7 @@
             </div>
         </div>
 
-        <OtherVMenu :turnOffDrawer="props.turnOffDrawer" :index="0" :menu="list" />
-
+        <OtherVMenu :turnOffDrawer="props.turnOffDrawer" :index="0" :menu="listPermission" />
     </div>
 </template>
 
@@ -26,11 +25,36 @@ const props = defineProps({
     turnOffDrawer: Function
 })
 
+const useAdmin = adminStore()
+
+const listPermission = computed(() => {
+    const newList = []
+    if (useAdmin.admin) {
+        list.value.forEach(e1 => {
+            if (e1.key == 'overview' || useAdmin.admin.role == 'root') {
+                newList.push(e1)
+            }
+            else {
+                if (useAdmin.admin._id) {
+                    useAdmin.admin.permissions.forEach((e2) => {
+                        if (e1.key == e2.name) {
+                            newList.push(e1)
+                            return
+                        }
+                    })
+                }
+            }
+        })
+    }
+    return newList
+})
+
 const list = ref([
     {
         icon: `dice-d6`,
         title: 'overview',
         url: '/admin/manager/overview',
+        key: 'overview',
         list: [
         ],
     },
@@ -38,6 +62,7 @@ const list = ref([
         icon: `user`,
         title: 'user',
         url: '/admin/manager/user',
+        key: 'users',
         level: 3,
         list: [],
     },
@@ -45,6 +70,7 @@ const list = ref([
         icon: `flag`,
         title: 'report',
         url: '/admin/manager/report',
+        key: 'reports',
         level: 3,
         list: [
             {
@@ -74,6 +100,7 @@ const list = ref([
         icon: `music`,
         title: 'song',
         url: '/admin/manager/music',
+        key: 'musics',
         level: 3,
         list: [],
     },
@@ -81,6 +108,7 @@ const list = ref([
         icon: `microphone-lines`,
         title: 'singer',
         url: '/admin/manager/singer',
+        key: 'singers',
         level: 3,
         list: [],
     },
@@ -88,6 +116,7 @@ const list = ref([
         icon: `table-list`,
         title: 'genre',
         url: '/admin/manager/genre',
+        key: 'genres',
         level: 3,
         list: [],
     },
@@ -95,6 +124,7 @@ const list = ref([
         icon: `globe`,
         title: 'country',
         url: '/admin/manager/country',
+        key: 'countries',
         level: 3,
         list: [],
     },
@@ -102,6 +132,7 @@ const list = ref([
         icon: `image`,
         title: 'news',
         url: '/admin/manager/news',
+        key: 'news',
         level: 3,
         list: [],
     },

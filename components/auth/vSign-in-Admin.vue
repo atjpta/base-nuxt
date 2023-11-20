@@ -9,7 +9,7 @@
                             <div class="btn join-item">
                                 <font-awesome-icon class="text-teal-400 text-xl" :icon="['fas', 'user']" />
                             </div>
-                            <Field @focus="test" :placeholder="t('Username')" name="username" type="text"
+                            <Field :placeholder="t('Username')" name="username" type="text"
                                 class="input sm:w-80 join-item placeholder:italic" />
                         </div>
                         <div class="text-red-900 ml-14">

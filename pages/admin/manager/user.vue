@@ -35,6 +35,7 @@ const listData = ref([])
 const total = ref(0)
 const indexPage = ref(1)
 const indexPageLimit = ref(1)
+const usePermission = permissionStore()
 const isLoading = ref(false)
 const key = ref('')
 const getMore = async (page, limit) => {
@@ -65,8 +66,9 @@ const search = async (data) => {
 
 const getApi = async () => {
     try {
-        await getMore(1, myConstant.PAGINATION.minLimit)
+        await usePermission.findAll()
         await useRole.findAll();
+        await getMore(1, myConstant.PAGINATION.minLimit)
     } catch (error) {
         navigateTo('/error/500')
     }

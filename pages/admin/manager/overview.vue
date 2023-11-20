@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <div class="grid grid-cols-5 mx-auto gap-5 duration-500">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:lg:grid-cols-4 mx-auto gap-5 duration-500">
             <AdminOverViewVUser />
             <AdminOverViewVComment />
             <AdminOverViewVMusic />

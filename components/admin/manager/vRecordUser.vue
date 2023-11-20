@@ -42,10 +42,11 @@
 
                 <dialog ref="modal" class="modal">
                     <form method="dialog" class="modal-box">
-                        <h3 class="font-bold text-lg">{{ t("Edit role") }}</h3>
 
-                        <div class="">
+
+                        <div>
                             <div class="form-control">
+                                <h3 class="font-bold text-lg">{{ t("Edit role") }}</h3>
                                 <div v-for="(i, index) in useRole.list" :key="i._id">
                                     <label class="label cursor-pointer">
                                         <span class="label-text">{{ i.name }}</span>
@@ -53,6 +54,20 @@
                                             class="radio checked:bg-teal-400" :checked="i.name == data.role.name" />
                                     </label>
                                     <div v-if="index < useRole.list.length - 1" class="divider my-0">
+                                    </div>
+                                </div>
+
+                                <div class="h-5"></div>
+                                <div :class="checkIsRoleAdmin ? '' : 'blur pointer-events-none'">
+                                    <h3 class="font-bold text-lg">{{ t("Edit permission") }}</h3>
+                                    <div v-for="(i, index) in usePermission.list" :key="i._id">
+                                        <label class="label cursor-pointer">
+                                            <span class="label-text">{{ i.name }}</span>
+                                            <input @click="setPermission(i._id)" type="checkbox"
+                                                class="toggle toggle-primary" :checked="check(data, i.name)" />
+                                        </label>
+                                        <div v-if="index < usePermission.list.length - 1" class="divider my-0">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -93,11 +108,13 @@ const props = defineProps({
     data: Object,
 })
 const useRole = roleStore()
+const usePermission = permissionStore()
 const useNotification = notificationStore()
 const modal = ref()
 const closeModal = ref()
 const useUser = userStore()
 const selectRole = ref()
+const selectPermission = ref()
 const emit = defineEmits(['refreshData'])
 const isLoading = ref(false)
 const { t } = useI18n()
@@ -107,7 +124,10 @@ const modalConfirm = ref({ isLoading: false, closeModal: null, openModal: null, 
 const edit = async () => {
     try {
         isLoading.value = true
-        await useUser.updateRole(props.data._id, { role: selectRole.value })
+        await useUser.updateRole(props.data._id, {
+            role: selectRole.value,
+            permissions: Array.from(selectPermission.value)
+        })
         emit('refreshData')
         useNotification.show('success', t('Update success!!'))
         closeModal.value.click()
@@ -150,8 +170,41 @@ const deleteOne = async () => {
 
 const openModal = () => {
     selectRole.value = props.data.role._id
+    selectPermission.value = new Set(props.data.permissions.map(e => e._id))
     modal.value.showModal();
 }
+
+const check = (user, permission) => {
+    let isPermission = false
+    user.permissions.forEach(e => {
+        if (e.name == permission) {
+            isPermission = true
+            return
+        }
+    });
+    return isPermission
+}
+
+const checkIsRoleAdmin = computed(() => {
+    let isAdmin = false
+    useRole.list.forEach((e) => {
+        if (e.name == 'admin' && selectRole.value == e._id) {
+            isAdmin = true
+            return
+        }
+    })
+    return isAdmin
+})
+
+const setPermission = (id) => {
+    if (selectPermission.value.has(id)) {
+        selectPermission.value.delete(id)
+    }
+    else {
+        selectPermission.value.add(id)
+    }
+}
+
 </script>
 
 <style></style>
