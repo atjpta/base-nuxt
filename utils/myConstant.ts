@@ -10,4 +10,8 @@ export class myConstant {
     minLimit: 10,
     maxLimit: Number.MAX_SAFE_INTEGER,
   };
+
+  static RANK = {
+    top: 50,
+  };
 }

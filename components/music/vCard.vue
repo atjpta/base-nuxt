@@ -109,25 +109,7 @@
         </div>
 
 
-        <div>
-            <div>
-                <dialog id="my_modal_playlist" class="modal">
 
-                    <div
-                        class="modal-box max-w-fit p-10 overflow-hidden glass bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 bg-base-100">
-                        <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-
-                        <PlaylistVList />
-                    </div>
-
-                    <form method="dialog" class="modal-backdrop">
-                        <button>close</button>
-                    </form>
-                </dialog>
-            </div>
-        </div>
     </div>
 </template>
 

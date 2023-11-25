@@ -85,7 +85,7 @@
                     <!-- các nút btn -->
                     <div class="flex items-center justify-center space-x-5">
                         <div onclick="my_modal_playlist.showModal()"
-                            class="text-2xl text-teal-500 btn xl:btn-md btn-sm btn-ghost btn-circle ">
+                            class="text-2xl text-teal-500 btn btn-ghost btn-circle ">
                             <font-awesome-icon :icon="['fas', 'plus']" />
                         </div>
 
@@ -149,6 +149,26 @@
                     <source src="" type="audio/mpeg" />
                 </audio> -->
 
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <dialog id="my_modal_playlist" class="modal">
+
+                    <div
+                        class="modal-box max-w-fit p-10 overflow-hidden glass bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 bg-base-100">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+
+                        <PlaylistVList />
+                    </div>
+
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
         </div>
     </div>

@@ -65,6 +65,14 @@ const list = ref([
                 list: [
                 ]
             },
+            {
+                icon: `ranking-star`,
+                title: 'rank',
+                url: '/explorer/rank',
+                level: 2,
+                list: [
+                ]
+            },
         ],
     },
 

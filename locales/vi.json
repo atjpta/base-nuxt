@@ -191,5 +191,11 @@
     "You are banned from commenting!!": "Bạn đang bị cấm bình luận!!",
     "Are you sure you want to remove warning this user?": "Bạn có chắc chắn muốn bỏ cảnh báo người dùng này?",
     "Are you sure you want to remove ban this user?": "Bạn có chắc chắn muốn bỏ cấm người dùng này?",
-    "Edit permission": "Sửa quyền"
+    "Edit permission": "Sửa quyền",
+    "rank": "bảng xếp hạng",
+    "Rank": "Bảng xếp hạng",
+    "today": "trong ngày",
+    "month": "trong tháng",
+    "year": "trong năm",
+    "allTime": "toàn thời gian"
 }
