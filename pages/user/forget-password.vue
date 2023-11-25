@@ -54,11 +54,12 @@
             </div>
         </div>
 
-        <div v-show="indexStep < 3" class="space-x-10 text-center sm:mx-10 mx-2">
-            <div @click="pre()" :class="indexStep == 1 ? 'btn-disabled' : ''" class="btn btn-sm sm:btn-md w-28 sm:w-32">
+        <div v-show="indexStep < 3" class="flex justify-center space-x-10 text-center sm:mx-10 mx-2">
+            <div @click="pre()" :class="indexStep == 1 ? 'btn-disabled' : ''" class="btn btn-sm sm:btn-md">
                 {{ t("Pre") }}
             </div>
-            <div @click="next()" :class="[loading ? 'loading' : '']" class="btn btn-sm sm:btn-md w-28 sm:w-32">
+
+            <div @click="next()" :class="[loading ? 'loading' : '']" class=" btn btn-sm sm:btn-md">
                 {{ t("Next") }}
             </div>
         </div>
@@ -93,6 +94,7 @@ const next = async () => {
     switch (indexStep.value) {
         case steps[0].index:
             try {
+                loading.value = true
                 if (!useUser.model?._id || useUser.model.username != username.value) {
                     if (!username.value) {
                         useNotification.show("error", t("Username cannot be empty."));
@@ -111,11 +113,13 @@ const next = async () => {
                     useNotification.show("error", t("Can't working"));
                 }
             } finally {
+                loading.value = false
                 break;
             }
 
         case steps[1].index:
             try {
+                loading.value = true
                 if (!code.value) {
                     useNotification.show("error", t("code cannot be empty."));
                     break;
@@ -131,6 +135,7 @@ const next = async () => {
                     useNotification.show("error", t("."));
                 }
             } finally {
+                loading.value = false
                 break;
             }
     }
