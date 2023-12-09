@@ -1,6 +1,7 @@
 <template>
     <div class="w-98">
         <div class="relative bg-black">
+            <ChatFbVMessage />
             <div class="absolute -right-0 bottom-3">
                 <div v-if="!open" @click="open = true" data-tip="hiện phát nhạc"
                     class="mx-5 my-1 tooltip tooltip-left flex btn btn-sm btn-primary hover:text-blue-400">

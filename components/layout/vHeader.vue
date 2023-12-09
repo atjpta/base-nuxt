@@ -24,7 +24,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="">
                 <ul class="sm:space-x-2 space-x-0.5 flex">
                     <!-- Navbar menu content here -->
@@ -97,3 +96,6 @@ const search = () => {
 </script>
 
 <style></style>
+
+
+

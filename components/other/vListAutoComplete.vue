@@ -2,7 +2,7 @@
     <div>
         <div v-if="sum > 0" class="p-3">
 
-            <div @click="goTo($event, 'music', i._id)"
+            <div @click="goTo($event, 'music', i._id, i)"
                 class="cursor-pointer p-2 px-5 rounded-2xl hover:bg-gradient-to-l from-green-400/20 via-cyan-400/20 to-blue-400/20 "
                 v-for=" i in useMusic.list" :key="i._id">
                 <font-awesome-icon :icon="['fas', 'music']" />
@@ -43,14 +43,17 @@ const useSinger = singerStore()
 const useCountry = countryStore()
 const useGenre = genreStore()
 const isShow = useState('isShowSearch', (() => false))
-
+const usePlay = playStore()
 const sum = computed(() => {
     return useMusic.list.length + useSinger.list.length + useCountry.list.length + useGenre.list.length
 })
 
-const goTo = (e, type, id) => {
+const goTo = (e, type, id, data) => {
     e.stopPropagation();
     isShow.value = false
+    if (type == 'music') {
+        usePlay.prePlay(data)
+    }
     navigateTo(`/explorer/${type}/${id}`)
 }
 </script>

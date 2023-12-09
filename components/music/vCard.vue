@@ -67,7 +67,7 @@
                                 <div onclick="my_modal_comment.showModal()"
                                     class="xl:text-2xl btn xl:btn-md btn-sm btn-ghost shadow-md bg-gradient-to-l from-green-400/30 via-cyan-400/30 to-blue-400/30">
                                     <font-awesome-icon :icon="['fas', 'comments']" />
-                                    <!-- {{ data.count_comments || 0 }} -->
+                                    {{ countComment || 0 }}
                                 </div>
 
                                 <div onclick="my_modal_playlist.showModal()"
@@ -128,6 +128,9 @@ const useComment = commentStore()
 const isHeart = useState(`isHeart`)
 const lengthHeart = ref(0)
 const route = useRoute()
+const countComment = computed(() => {
+    return useComment.list.length || 0
+})
 const heart = async () => {
     isHeart.value = !isHeart.value
     if (isHeart.value) {
